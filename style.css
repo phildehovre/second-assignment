@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+   
+    /* CSS HEX */
+    --oxford-blue: #011638ff;
+--charcoal: #364156ff;
+--lemon-chiffon: #f4f0bbff;
+--white: #ffffffff;
+--red-cmyk: #f72c25ff;
+
+/* CSS HSL */
+--oxford-blue: hsla(217, 96%, 11%, 1);
+--charcoal: hsla(219, 23%, 27%, 1);
+--lemon-chiffon: hsla(56, 72%, 85%, 1);
+--white: hsla(0, 0%, 100%, 1);
+--red-cmyk: hsla(2, 93%, 56%, 1);
+
+}
+
+body {
+    background-color: var(--white);
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: var(--oxford-blue)
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    opacity: 0;
+    transition: all 0.25s ease 0s;
+
+}
+
+.nav--show {
+    opacity: 1;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;  
+}
+
+.nav_link {
+    color: var(--oxford-blue);
+    text-decoration: none;
+    padding: 1rem;
+    transition: all 0.3s ease 0s;
+}
+.nav_link > a {
+    color: var(--oxford-blue);
+    text-decoration: none;
+    padding: 1rem;
+    transition: all 0.3s ease 0s;
+}
+
