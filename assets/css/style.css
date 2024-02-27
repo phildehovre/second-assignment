@@ -4,6 +4,7 @@
    
 /* CSS HEX */
 --oxford-blue: #011638ff;
+--oxford-blue-o1: hsla(217, 96%, 11%, 0.10);
 --charcoal: #364156ff;
 --lemon-chiffon: #f4f0bbff;
 --white: #ffffffff;
@@ -23,7 +24,6 @@
 }
 
 html {
-    width: 100svw;
 }
 
 body {
@@ -32,7 +32,6 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    max-width: 100svw;
 }
 
 h1 {
@@ -47,12 +46,14 @@ h1 {
 
 #mobile_nav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
 header {
-    width: 100svw;
+    /* margin: auto; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #logo_placeholder {
@@ -69,18 +70,19 @@ header {
 
 nav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    width: 100svw;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    padding: 1rem 2rem;
 }
 
 nav > ul {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     list-style: none;
-    padding: 0;
     margin: 0;  
 }
 
@@ -96,7 +98,13 @@ nav > ul {
     padding: 1rem;
     transition: all 0.3s ease 0s;
 }
-
+section {
+    overflow-x: hidden;
+}
+.bg-blue {
+    background-color: var(--oxford-blue);
+    color: white;
+}
 
 
 

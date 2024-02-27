@@ -38,18 +38,22 @@
     position: absolute;
     left: 0;
     top: 68px;
-    width: 100%;
+    width: 100svw;
     margin: auto;
     z-index: -1;
     transform: translateY(-100%);
-    /* transition: slideOut 250ms ease-in-out all forwards; */
 }
 .hamburger_content li{ 
-    padding: 1em .5em;
+    padding: 1em 0;
     width: 100%;
     text-align: center;
     display: none;
     opacity: 0;
+    overflow-x: hidden;
+}
+.hamburger_content > li a{ 
+    text-decoration: none;
+    color: inherit;
 }
 
 .hamburger_ctn.active.animate-in .hamburger_content {
@@ -73,7 +77,8 @@
     display: block;
     animation: stagger 0.3s ease-in-out forwards;
     animation-delay: calc(var(--order) * 0.1s);
-    background-color: rgba(0, 0, 0, 0.048);
+    background-color:var(--oxford-blue-o1);
+    color: var(--oxford-blue)
 }
 
 @keyframes stagger {

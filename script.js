@@ -1,17 +1,16 @@
+// init
 document.addEventListener('DOMContentLoaded', function() {
 
+    // desktop nav animation
     let nav = document.querySelector('.nav--main');
-
-    console.log(nav);
-
     if (nav !== null) {
         setTimeout(function() {
-            nav.classList.add('nav--show');
+            nav?.classList.add('nav--show');
         }, 1000);
     }
 
+    // Hamburger menu class toggling for mobile animation
     const hamburger = document.querySelector('.hamburger_ctn');
-    
     if (hamburger) {
         hamburger.addEventListener('click', function(e) {
             console.log('hamburger',hamburger.classList);
@@ -30,9 +29,18 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('hamburger',hamburger.classList);
         })
     }
+
 })
 
-
-
-
-// console.log('hamburger',hamburger);
+document.addEventListener('DOMContentLoaded', () => {
+    const navMain = document.querySelector('.nav--main');
+console.log("main:", navMain)
+    const navPlaceholders = document.querySelectorAll('.nav-placeholder');
+    console.log(navPlaceholders)
+    if (navMain) {
+        navPlaceholders.forEach((placeholder) => {
+            placeholder.appendChild(navMain);
+        });
+    }
+})
+// Insert navigation bar into placeholders
