@@ -2,8 +2,8 @@
 
 :root {
    
-    /* CSS HEX */
-    --oxford-blue: #011638ff;
+/* CSS HEX */
+--oxford-blue: #011638ff;
 --charcoal: #364156ff;
 --lemon-chiffon: #f4f0bbff;
 --white: #ffffffff;
@@ -18,16 +18,53 @@
 
 }
 
+* {
+    /* outline: 1px solid red; */
+}
+
+html {
+    width: 100svw;
+}
+
 body {
     background-color: var(--white);
     font-family: "Montserrat", sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    max-width: 100svw;
 }
 
 h1 {
     color: var(--oxford-blue)
+}
+
+
+#main_nav {
+    display: none;
+}
+
+
+#mobile_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header {
+    width: 100svw;
+}
+
+#logo_placeholder {
+    border: none;
+    border-radius: 50%;
+    height: 2em;
+    width: 2em;
+    background-color: var(--oxford-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
 
 nav {
@@ -36,14 +73,6 @@ nav {
     align-items: center;
     padding: 1rem 2rem;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    z-index: 100;
-    opacity: 0;
-    transition: all 0.25s ease 0s;
-
-}
-
-.nav--show {
-    opacity: 1;
 }
 
 nav > ul {
@@ -66,5 +95,21 @@ nav > ul {
     text-decoration: none;
     padding: 1rem;
     transition: all 0.3s ease 0s;
+}
+
+
+
+
+@media (min-width: 768px) {
+    #main_nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        transition: all 0.25s ease 0s;
+    }
+    #mobile_nav {
+        display: none;
+    }
 }
 
