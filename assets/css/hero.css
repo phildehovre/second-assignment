@@ -25,6 +25,13 @@
     font-size: 5.5rem;
     margin-bottom: 1rem;
     letter-spacing: -5px;
+    background: url('../pictures/pexels-anni-roenkae-3418457.jpg') no-repeat center center/cover;
+ -webkit-background-attachment: fixed;
+    -moz-background-attachment: fixed;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-attachment: fixed;
 }
 
 #subheading {
