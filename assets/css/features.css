@@ -1,8 +1,10 @@
 .card {
-    background-color: white;
-    color: var(--oxford-blue);
+    background-color: rgba(255, 255, 255, 0.089);
+    /* color: var(--oxford-blue); */
     padding: 1rem 2rem;
-    border-radius: 16px;
+    border-radius: 6px;
+    backdrop-filter: blur(5px);
+    mix-blend-mode: difference;
 }
 
 .features_ctn {
@@ -13,6 +15,8 @@
     flex-direction: column;
 }
 
-.feature > h2 {
-    
+
+#features {
+    background: url('../pictures/pexels-david-kanigan-15571684\ \(1\).jpg') no-repeat center center/cover;
+    background-attachment: fixed;
 }

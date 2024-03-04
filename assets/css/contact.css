@@ -1,0 +1,27 @@
+.contact_ctn {
+    display: flex;
+    align-items: center;
+    width: 100svw;
+    flex-direction: column;
+    height: 100svh;
+}
+#contact_form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    width: 80%;
+    max-width: 750px;
+}
+
+.form_input {
+    padding: 1rem;
+    border: none;
+    background-color: var(--oxford-blue-o1);
+    border-radius: 5px;
+}
+
+
+#contact_form textarea{
+    resize: none;
+}
