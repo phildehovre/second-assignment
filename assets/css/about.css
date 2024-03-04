@@ -1,14 +1,24 @@
 .about_ctn {
     margin: auto;
-    padding: 2rem 2rem;
     display: flex;
     gap: 1rem;
     flex-direction: column;
+    max-width: 750px
 }
-
 .about_card{
     background-color: var(--oxford-blue-o1);
     font-size: 1.2rem;
     line-height: 2rem;
     padding: 1rem 2rem;
+}
+
+.about_card span{
+    display: flex;
+    align-items: center;    
+    justify-content: center;
+    gap: 2rem;
+}
+.about_card .header{
+    background-color: transparent; 
+    font-size: 2rem;
 }
