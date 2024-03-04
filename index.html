@@ -12,11 +12,14 @@
     <link rel="stylesheet" href="./assets/css/hamburger.css">
     <link rel="stylesheet" href="./assets/css/features.css">
     <script src="/assets/scripts/script.js" defer></script>
+    <script src="https://kit.fontawesome.com/e8ab5a3bbe.js" crossorigin="anonymous"></script>
 </head>
 <body >
     <header>
         <nav class="nav--main">
-            <div id="logo_placeholder">S</div>
+            <a href="/">
+                <div id="logo_placeholder"></div>
+            </a>
             <ul id="main_nav">
                 <li class="nav_link"><a href="/">Home</a></li>
                 <li class="nav_link"><a href="about.html">About</a></li>
@@ -29,7 +32,7 @@
                     <div class="bar bottom"></div>
                     <div class="hamburger_content">
                         <li style="--order: 1"><a href="/">Home</a></li>
-                        <li style="--order: 2"><a href="/">Features</a></li>
+                        <li style="--order: 2"><a href="">Features</a></li>
                         <li style="--order: 3"><a href="about.html">About</a></li>
                         <li style="--order: 4"><a href="contact.html">Contact</a></li>
                     </div>
@@ -42,26 +45,47 @@
             <div id="slogan_ctn">
                 <h1 id="heading">Stability</h1>
                 <h2 id="subheading">Spot,</h2>
+                <i class="fas fa-arrow-down"></i>
                 <h2 id="subheading">Break,</h2>
+                <i class="fas fa-arrow-down"></i>
                 <h2 id="subheading">Lead.</h2>
+                <button class="btn">Start the journey
+                    <i class="fas fa-arrow-right shift"></i>
+                </button>
             </div>
         </div>
-        <div class="bg-blue">
+        <section class="features_section bg-blue">
+            <h1 class="section_heading  text_white">Features</h1>
             <div class="features_ctn" id="features">
                 <div class="card feature" style="--bg-url: https://www.istockphoto.com/photo/abstract-layered-and-folded-paper-background-gm1869390184-552948179">
-                    <h2>Spot</h2>
+                    <span>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <h2>Spot</h2>
+                    </span>
+                    
                     <p>Spot the best opportunities for your business.</p>
+                    <p>
+                        <i class="fas fa-chevron-down"></i>
+                        More...
+                    </p>
+                    <p class="content">At the heart of our journaling app lies a sophisticated AI system that analyzes your entries to identify patterns of thought and behavior. Through advanced algorithms, our app recognizes recurring themes, emotions, and behaviors, providing you with invaluable insights into your psyche.</p>
                 </div>
                 <div class="card feature"  style="--bg-url: https://www.istockphoto.com/photo/abstract-layered-and-folded-paper-background-gm1869390184-552948179">
+                    <i class="fa-solid fa-hammer"></i>
                     <h2>Break</h2>
                     <p>Break the barriers and reach new heights.</p>
+                    <i class="fas fa-chevron-down"></i>
+                    <p class="content">Knowledge is power, and our app empowers you with the knowledge to make positive changes in your life. By recognizing patterns that may be holding you back or patterns that you wish to reinforce, our app guides you towards actionable steps for growth and transformation.</p>
                 </div>
                 <div class="card feature"  style="--bg-url: https://www.istockphoto.com/photo/abstract-layered-and-folded-paper-background-gm1869390184-552948179">
+                    <i class="fa-solid fa-hand-fist"></i>
                     <h2>Lead</h2>
                     <p>Lead the way and be the best in your field.</p>
+                    <i class="fas fa-chevron-down"></i>
+                    <p class="content">No two individuals are alike, and neither are their journeys towards self-improvement. Our journaling app offers personalized guidance tailored to your unique needs and goals. Whether you're seeking to break harmful habits, cultivate new perspectives, or simply understand yourself better, our app provides the support and tools you need to succeed.</p>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
     <footer>
         <div class="footer_column">

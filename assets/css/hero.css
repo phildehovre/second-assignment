@@ -27,12 +27,25 @@
     margin-bottom: 1rem;
     letter-spacing: -5px;
     background: url('../pictures/pexels-anni-roenkae-3418457.jpg') no-repeat center center/cover;
- -webkit-background-attachment: fixed;
-    -moz-background-attachment: fixed;
     background-clip: text;
+    -webkit-background-attachment: fixed;
+    -moz-background-attachment: fixed;
+    -o-background-attachment: fixed;
+    background-attachment: fixed;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-attachment: fixed;
+}
+
+.shift {
+    animation: shift 1s linear infinite;
+}
+.shift:hover {
+    -webkit-animation-play-state:paused;
+    -moz-animation-play-state:paused;
+    -o-animation-play-state:paused;
+    animation-play-state:paused;
+    cursor: pointer;
 }
 
 #subheading {
@@ -67,5 +80,17 @@
 
     100% {
         opacity: 1
+    }
+}
+
+@keyframes shift {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0px);
     }
 }

@@ -1,15 +1,42 @@
 .card {
-    background-color: rgba(255, 255, 255, 0.089);
-    /* color: var(--oxford-blue); */
+    background-color: rgba(255, 255, 255, 0.185);
     padding: 1rem 2rem;
     border-radius: 6px;
     backdrop-filter: blur(5px);
-
     mix-blend-mode: hard-light;
 }
 
+.card:hover {
+    background-color: rgba(255, 255, 255, 0.404);
+    color: var(--oxford-blue);
+    transition: 250ms ease-in-out all;
+}
+
+
+
+.feature h2 {
+    display: inline;
+    width: 40%;
+    vertical-align: middle;
+    margin-left: .5em;
+}
+.feature {
+    cursor: pointer;
+}
+.feature p {
+    color: inherit;
+}
+
+.content{ 
+    display: none;
+}
+
+.feature--active .content {
+    display: block;
+
+}
+
 .features_ctn {
-    margin: auto;
     padding: 2rem 2rem;
     display: flex;
     gap: 1rem;
@@ -17,8 +44,26 @@
 }
 
 
-#features {
-    /* background: url('../pictures/pexels-david-kanigan-15571684\ \(1\).jpg') no-repeat center center/cover; */
+.features_section {
     background: url('../pictures/pexels-harry-cooke-6195041.jpg') no-repeat center center/cover;
     background-attachment: fixed;
+    margin: auto;
+    width: 100%;
+
+}
+#features {
+    /* background: url('../pictures/pexels-david-kanigan-15571684\ \(1\).jpg') no-repeat center center/cover; */
+}
+
+@media screen and (min-width: 768px) {
+    .features_ctn {
+        gap: 2rem;
+        flex-direction: row;
+    }
+    .features_ctn h1 {
+        display: block;
+    }
+    .feature {
+        width: 50%;
+    }
 }

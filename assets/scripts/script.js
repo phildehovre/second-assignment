@@ -43,4 +43,12 @@ console.log("main:", navMain)
         });
     }
 })
+document.addEventListener('DOMContentLoaded', () => {
+    let features = document.querySelectorAll(".feature")
+    features.forEach((feature) => {
+        feature.addEventListener("click", (e) => {
+            feature.classList.toggle("feature--active")
+        })
+    })
+})
 // Insert navigation bar into placeholders
