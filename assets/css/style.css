@@ -5,6 +5,7 @@
 /* CSS HEX */
 --oxford-blue: #011638ff;
 --oxford-blue-o1: hsla(217, 96%, 11%, 0.10);
+--oxford-blue-o1-opaque: #E5E7EA;
 --charcoal: #364156ff;
 --lemon-chiffon: #f4f0bbff;
 --white: #ffffffff;
@@ -76,6 +77,7 @@ nav {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     justify-content: space-between;
     padding: 1rem 2rem;
+    z-index: 100;
 }
 
 nav > ul {
@@ -145,6 +147,7 @@ main {
     align-items: center;
     justify-content: center;
     flex: 0 1 auto;
+    position: relative
 }
 
 .btn {

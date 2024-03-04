@@ -4,6 +4,7 @@
     width: 100svw;
     flex-direction: column;
     height: 100svh;
+    z-index: -1;
 }
 #contact_form {
     display: flex;

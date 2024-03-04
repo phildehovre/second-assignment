@@ -77,7 +77,7 @@
     display: block;
     animation: stagger 0.3s ease-in-out forwards;
     animation-delay: calc(var(--order) * 0.1s);
-    background-color:var(--oxford-blue-o1);
+    background-color:var(--oxford-blue-o1-opaque);
     color: var(--oxford-blue)
 }
 

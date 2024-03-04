@@ -4,7 +4,8 @@
     padding: 1rem 2rem;
     border-radius: 6px;
     backdrop-filter: blur(5px);
-    mix-blend-mode: difference;
+
+    mix-blend-mode: hard-light;
 }
 
 .features_ctn {
@@ -17,6 +18,7 @@
 
 
 #features {
-    background: url('../pictures/pexels-david-kanigan-15571684\ \(1\).jpg') no-repeat center center/cover;
+    /* background: url('../pictures/pexels-david-kanigan-15571684\ \(1\).jpg') no-repeat center center/cover; */
+    background: url('../pictures/pexels-harry-cooke-6195041.jpg') no-repeat center center/cover;
     background-attachment: fixed;
 }
