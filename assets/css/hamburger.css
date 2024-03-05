@@ -54,6 +54,8 @@
 .hamburger_content > li a{ 
     text-decoration: none;
     color: inherit;
+
+
 }
 
 .hamburger_ctn.active.animate-in .hamburger_content {
@@ -83,8 +85,14 @@
 }
 .hamburger_ctn.active .hamburger_content li:last-child{
     box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.068);
-
+    
 }
+
+.hamburger_ctn.active .hamburger_content .cta{
+background-color: var(--oxford-blue);
+color: white;
+}
+
 
 @keyframes stagger {
     0% {
