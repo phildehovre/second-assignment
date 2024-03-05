@@ -1,0 +1,45 @@
+.today_ctn {
+    margin: auto;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    max-width: 750px;
+}
+
+.entry_group {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: flex-start;
+    padding: 0 2rem;
+    background-color: var(--oxford-blue-o1);
+    margin: 0 2rem;
+    padding: 2rem 2rem;
+    border-radius: 6px; 
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.13);
+}
+
+.form_ctn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: flex-start;
+
+}
+
+.entry_group radio-group {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-evenly;
+
+}
+.entry_group label {
+    display: flex;
+    flex-direction: column;
+}
+
+.entry_group input {
+    padding: 1em;
+    border-radius: 6px;
+    border: 1px solid var(--oxford-blue);
+}

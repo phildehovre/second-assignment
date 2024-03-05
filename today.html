@@ -19,12 +19,12 @@
             <a href="/">
                 <div id="logo_placeholder"></div>
             </a>
-            <ul id="main_nav">
+            <ul id="main_nav" role="navigation" aria-label="Main Navigation">
                 <li class="nav_link"><a href="/">Home</a></li>
                 <li class="nav_link"><a href="about.html">About</a></li>
                 <li class="nav_link"><a href="contact.html">Contact</a></li>
             </ul>
-            <ul id="mobile_nav">
+            <ul id="mobile_nav" role="navigation" aria-label="Mobile Navigation">
                 <div class="hamburger_ctn">
                     <div class="bar top"></div>
                     <div class="bar center"></div>
@@ -40,9 +40,64 @@
         </nav>
     </header>
     <main>
-        
-
-     
+        <section class="today_ctn">
+            <h1>Today</h1>
+            <form class="form_ctn">
+                <div class="entry_group" aria-labelledby="sentiment-label">
+                    <label id="sentiment-label" for="sentiment">Today I feel:
+                    </label>
+                    <radio-group role="radiogroup" aria-labelledby="sentiment-label">
+                        <label for="sentiment-positive">Positive
+                            <input type="radio" id="sentiment-positive" name="sentiment" value="positive">
+                        </label>
+                        <label for="sentiment-neutral">Neutral
+                            <input type="radio" id="sentiment-neutral" name="sentiment" value="neutral">
+                        </label>
+                        <label for="sentiment-negative">Negative
+                            <input type="radio" id="sentiment-negative" name="sentiment" value="negative">
+                        </label>
+                    </radio-group>
+                    <label for="entry-4">Today was...
+                        <input list="datalist-1" name="entry-4" placeholder="What are you grateful for?">
+                        <datalist id="datalist-1">
+                            <option value="Productive"></option>
+                            <option value="Long"></option>
+                            <option value="Stressful"></option>
+                            <option value="Relaxing"></option>
+                            <option value="Fun"></option>
+                        </datalist>
+                    </label>
+                    <label for="entry-3">Today I...
+                        <input type="textarea" name="entry-3" placeholder="What did you do today?">
+                    </label>
+                </div>
+                <div class="entry_group">
+                    <label for="entry-4">I am grateful for...
+                        <input list="datalist-4" name="entry-4" placeholder="What are you grateful for?">
+                        <datalist id="datalist-4">
+                            <option value="My family">
+                            <option value="My health">
+                            <option value="My job">
+                            <option value="My friends">
+                            <option value="My home">
+                        </datalist>
+                    </label>
+                </div>
+                <div class="entry_group">
+                    <label for="entry-5">I am looking forward to...
+                        <input type="textarea" name="entry-5" placeholder="What are you looking forward to?">
+                    </label>
+                    <label for="entry-6">What's on your mind?
+                        <input type="textarea" name="entry-6" placeholder="What's on your mind?">
+                    </label>
+                </div>
+                <div class="entry_group">
+                    <label for="entry-7">Things I would like to do differently...
+                        <input type="textarea" name="entry-7" placeholder="What's your mood?">
+                    </label>
+                </div>
+            </form>
+        </section>
     </main>
 </body>
 </html>
