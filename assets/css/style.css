@@ -2,17 +2,9 @@
 
 :root {
    
-/* CSS HEX */
---oxford-blue: #011638ff;
---oxford-blue-o1: hsla(217, 96%, 11%, 0.10);
---oxford-blue-o1-opaque: #E5E7EA;
---charcoal: #364156ff;
---lemon-chiffon: #f4f0bbff;
---white: #ffffffff;
---red-cmyk: #f72c25ff;
 
 /* CSS HSL */
---oxford-blue: hsla(217, 96%, 11%, 1);
+--primary: rgb(12, 136, 194);
 --charcoal: hsla(219, 23%, 27%, 1);
 --lemon-chiffon: hsla(56, 72%, 85%, 1);
 --white: hsla(0, 0%, 100%, 1);
@@ -58,7 +50,7 @@ header {
 #logo_placeholder {
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-bottom: 25px solid var(--oxford-blue);
+    border-bottom: 25px solid var(--primary);
     height: 0; 
     width: 0;
     transform: rotate(180deg);
@@ -96,27 +88,25 @@ nav > ul {
 }
 
 .nav_link {
-    color: var(--oxford-blue);
+    color: var(--primary);
     text-decoration: none;
     padding: 1rem;
     transition: all 0.3s ease 0s;
 }
 .nav_link > a {
-    color: var(--oxford-blue);
+    color: var(--primary);
     text-decoration: none;
     padding: 1rem;
     transition: all 0.3s ease 0s;
 }
 
-.cta {
-    background-color: var(--oxford-blue);
-}
+
 
 .text_white {
     color: white;
 }
 .bg-blue {
-    background-color: var(--oxford-blue);
+    background-color: var(--primary);
     color: white;
 }
 
@@ -141,7 +131,7 @@ footer {
 }
 
 .footer_column > h3 {
-    color: var(--oxford-blue);
+    color: var(--primary);
 }
 
 .footer_column > ul {
@@ -155,7 +145,7 @@ footer {
 }
 
 .footer_column a {
-    color: var(--oxford-blue);
+    color: var(--primary);
     text-decoration: none;
     transition: all 0.3s ease 0s;
 }
@@ -165,7 +155,7 @@ main {
 }
 
 .btn {
-    background-color: var(--oxford-blue);
+    background-color: var(--primary);
     color: white;
     padding: 1rem 2rem;
     font-size: larger;
@@ -178,7 +168,7 @@ main {
 
 .btn.light {
     background-color: white;
-    color: var(--oxford-blue);
+    color: var(--primary);
     transition: 250ms ease-in-out all;
 }
 
@@ -188,8 +178,8 @@ main {
 
 .btn:hover {
     background-color: white;
-    border: var(--oxford-blue) 2px solid;
-    color: var(--oxford-blue);
+    border: var(--primary) 2px solid;
+    color: var(--primary);
     cursor: pointer;
 
 }
@@ -216,7 +206,7 @@ main {
     width: 100px;
     height: 100px;
     object-fit: cover;
-    border: 5px solid var(--oxford-blue-o1);
+    border: 5px solid var(--secondary-o1);
 
 }
 

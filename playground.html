@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/playground.css">
+    <script src="/assets/scripts/playground.js" defer></script>
+</head>
+  <body>
+    <header>
+      <h1>
+        Love Maths
+      </h1>
+    </header>
+    <main>
+        <div id="operators">
+            <h2>Select the operator:</h2>
+            <button class="operator" onclick="setOperator('+')" id="addition" >+</button>
+            <button class="operator" onclick="setOperator('-')" id="substraction" >-</button>
+            <button class="operator" onclick="setOperator('*')" id="multiplication" >*</button>
+            <button class="operator" onclick="setOperator('/')" id="division">/</button>
+
+            <div id="question-area">
+                <span id="operand1"></span>
+                <span id="operator"></span>
+                <span id="operand2"></span>
+                  <input type="number" id="answer" placeholder="your answer">
+                  <button id="submit" onclick="logOperation()">Submit</button>
+                  <button id="next" onclick="reset()">Next</button>
+                <span id="result"></span>
+            </div>
+            <div id="score-area">
+              <span id="correct-answers"></span>
+              <span id="incorrect-answers"></span>
+            </div>
+        </div>
+    </main>
+
+  </body>
+</html>
