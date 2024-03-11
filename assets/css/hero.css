@@ -94,3 +94,12 @@
         transform: translateX(0px);
     }
 }
+
+@media screen and (min-width: 768px) {
+    #heading {
+        font-size: 12rem;
+    }
+    #subheading {
+        font-size: 4rem;
+    }
+}
