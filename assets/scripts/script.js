@@ -34,9 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', () => {
     const navMain = document.querySelector('.nav--main');
-console.log("main:", navMain)
     const navPlaceholders = document.querySelectorAll('.nav-placeholder');
-    console.log(navPlaceholders)
     if (navMain) {
         navPlaceholders.forEach((placeholder) => {
             placeholder.appendChild(navMain);
