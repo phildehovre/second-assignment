@@ -6,19 +6,6 @@
     max-width: 750px;
 }
 
-.entry_group {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    justify-content: flex-start;
-    padding: 0 2rem;
-    background-color: var(--secondary-o1);
-    margin: 0 2rem;
-    padding: 2rem 2rem;
-    border-radius: 6px; 
-    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.13);
-}
-
 .form_ctn {
     display: flex;
     flex-direction: column;
@@ -27,19 +14,45 @@
 
 }
 
-.entry_group radio-group {
-    display: flex;
-    gap: 2rem;
-    justify-content: space-evenly;
 
-}
-.entry_group label {
+#cards_ctn {
+    position: relative;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
 
-.entry_group input {
-    padding: 1em;
-    border-radius: 6px;
-    border: 1px solid var(--primary);
+.form-card {
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 20px;
+    min-width: 350px;
+    min-height: 150px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+.form-card.transition {
+    animation: slideOut 0.5s forwards ease-in-out;
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translate(0%, 2%);
+        opacity: 1;
+    }
+    25% {
+        transform: translate(-25%, 0%);
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-100%, 0%);
+        opacity: 0;
+    }
 }
