@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Hamburger menu class toggling for animation
     const hamburger = document.querySelector('.hamburger_ctn');
-        hamburger.addEventListener('click', function(e) {
+    if (hamburger)
+{        hamburger.addEventListener('click', function(e) {
             // Class toggling logic
             if (hamburger.classList.contains('active')) {
                 hamburger.classList.toggle('animate-in');
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 hamburger.classList.toggle('active');
                 hamburger.classList.toggle('animate-in');
             } 
-        });
+        });}
 })
 
     const navMain = document.querySelector('.nav--main');
