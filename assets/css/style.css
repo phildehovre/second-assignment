@@ -4,7 +4,8 @@
    
 
 /* CSS HSL */
---primary: rgb(12, 136, 194);
+--primary: rgb(5, 59, 141);
+--secondary: rgb(240, 240, 240);
 --charcoal: hsla(219, 23%, 27%, 1);
 --lemon-chiffon: hsla(56, 72%, 85%, 1);
 --white: hsla(0, 0%, 100%, 1);
@@ -12,9 +13,9 @@
 
 }
 
-/* *{
-    outline: 1px solid red;
-} */
+*{
+    /* outline: 1px solid red; */
+}
 
 body, html, :root {
     height: 100%;
@@ -29,6 +30,11 @@ body {
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+    color: var(--primary);
+
+}
 
 #main_nav {
     display: none;
@@ -164,6 +170,12 @@ main {
     transition: 250ms ease-in-out all;
     border: transparent 2px solid;
     margin: 1rem 2rem;
+}
+
+.btn.cta {
+    position: relative;
+    z-index: 10;
+    color: white;
 }
 
 .btn.light {

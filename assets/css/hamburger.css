@@ -74,6 +74,7 @@
     animation: slideOut 0.4s cubic-bezier(.26,-0.34,.32,1.45) forwards;
     animation-delay: calc(var(--order) * 0.1s);
     opacity: 1;
+    
 }
 
 .hamburger_ctn.active .hamburger_content li{
@@ -81,12 +82,14 @@
     animation: stagger 0.3s ease-in-out forwards;
     animation-delay: calc(var(--order) * 0.1s);
     background-color:var(--secondary);
-    color: var(--primary)
+    color: var(--primary);
+    margin-top: -1px;
 }
 .hamburger_ctn.active .hamburger_content li:last-child{
-    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.13);
-    
+        /* Slight placement adjustment to hide "cracks" between li elements */
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.13);
 }
+
 
 .hamburger_ctn.active .hamburger_content .cta{
 background-color: var(--primary);

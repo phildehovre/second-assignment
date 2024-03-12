@@ -9,30 +9,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
 
-    // Hamburger menu class toggling for mobile animation
+    // Hamburger menu class toggling for animation
     const hamburger = document.querySelector('.hamburger_ctn');
-    if (hamburger) {
         hamburger.addEventListener('click', function(e) {
-            console.log('hamburger',hamburger.classList);
+            // Class toggling logic
             if (hamburger.classList.contains('active')) {
                 hamburger.classList.toggle('animate-in');
                 hamburger.classList.toggle('animate-out');
                 setTimeout(function() {
                     hamburger.classList.toggle('active');
                     hamburger.classList.toggle('animate-out');
-                }, 500)
+                }, 500);
             }
             if (!hamburger.classList.contains('active')) {
                 hamburger.classList.toggle('active');
                 hamburger.classList.toggle('animate-in');
             } 
-            console.log('hamburger',hamburger.classList);
-        })
-    }
-
+        });
 })
 
-document.addEventListener('DOMContentLoaded', () => {
     const navMain = document.querySelector('.nav--main');
     const navPlaceholders = document.querySelectorAll('.nav-placeholder');
     if (navMain) {
@@ -40,13 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
             placeholder.appendChild(navMain);
         });
     }
-})
-document.addEventListener('DOMContentLoaded', () => {
     let features = document.querySelectorAll(".feature")
     features.forEach((feature) => {
         feature.addEventListener("click", (e) => {
             feature.classList.toggle("feature--active")
         })
     })
-})
 // Insert navigation bar into placeholders

@@ -6,7 +6,7 @@
  * Name is used for form registration and submission (TODO)
  * type and id will be used to create the form elements and for future data manipulation (TODO)
  */
-const formData = [
+const cardData = [
     {
         label: "Today was...",
         type: "datalist",
@@ -64,79 +64,108 @@ const formData = [
 }
 ];
 
+function submitForm(form) {
+    console.log("submitting form")
+    console.log(...form.entries())
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("reset?")
     /**
      * @function
      * @description This function creates the form cards and appends them to the DOM.
      */
-    for (let card in formData) {
+    var form = new FormData(document.querySelector('form'));
+    
+    for (let card in cardData) {
         // Create card element that will be targeted for animation;
         let cardDiv = document.createElement('div');
         cardDiv.classList.add('form-card');
-        cardDiv.id = formData[card].id;
+        cardDiv.id = cardData[card].id;
         cardDiv.innerHTML = `
-            <h2>${formData[card].label}</h2>
-            <p>${formData[card].placeholder}</p>
+            <h2>${cardData[card].label}</h2>
+            <p>${cardData[card].placeholder}</p>
         `;
 
         let inputValue
         // Create form elements based on the type of form data;
-        if (formData[card].type === 'radio') {
-            for (let option in formData[card].options) {
+        if (cardData[card].type === 'radio') {
+            for (let option in cardData[card].options) {
                 let radio = document.createElement('input');
                 radio.type = 'radio';
-                radio.name = formData[card].name;
-                radio.value = formData[card].options[option].value;
+                radio.name = cardData[card].name;
+                radio.value = cardData[card].options[option].value;
                 let label = document.createElement('label');
-                label.htmlFor = formData[card].options[option].value;
-                label.innerHTML = formData[card].options[option].label;
+                label.htmlFor = cardData[card].options[option].value;
+                label.innerHTML = cardData[card].options[option].label;
                 cardDiv.appendChild(radio);
                 cardDiv.appendChild(label);
+                radio.addEventListener('click', function(e) {
+                    inputValue = e.target.value
+                });
             }
         }
-        if (formData[card].type === 'textarea') {
+        if (cardData[card].type === 'textarea') {
             let textarea = document.createElement('textarea');
-            textarea.name = formData[card].name;
+            textarea.name = cardData[card].name;
             cardDiv.appendChild(textarea);
+            textarea.addEventListener('input', function(e) {
+                inputValue = e.target.value
+            });
         }
-        if (formData[card].type === 'datalist') {
+        if (cardData[card].type === 'datalist') {
             let datalist = document.createElement('datalist');
-            datalist.id = formData[card].id;
-            for (let option in formData[card].options) {
+            datalist.id = cardData[card].id;
+            for (let option in cardData[card].options) {
                 let optionEl = document.createElement('option');
-                optionEl.value = formData[card].options[option];
+                optionEl.value = cardData[card].options[option];
                 datalist.appendChild(optionEl);
             }
             let input = document.createElement('input');
-            input.name = formData[card].name;
-            input.addEventListener('click', function(e) {
-                e.stopPropagation();
-                console.log(e.target.value)
-            });
+            input.name = cardData[card].name;
             input.addEventListener('input', function(e) {
-                console.log(e.target.value)
                 inputValue = e.target.value
             });
-            input.setAttribute('list', formData[card].id);
+            input.setAttribute('list', cardData[card].id);
             cardDiv.appendChild(input);
             cardDiv.appendChild(datalist);
         }
         
         // Initial card styles for "stacking" visual effect;
-        cardDiv.style.zIndex = formData.length - card
+        cardDiv.style.zIndex = cardData.length - card
         cardDiv.style.position = "absolute";
         cardDiv.style.top = `${card * 20}px`;
         cardDiv.addEventListener('click', function(e) {
-            console.log(e.target.value)
             if (inputValue) {
                 cardDiv.classList.add('transition');
+                form.append(cardData[card].name, inputValue);
+                
+                // Create a new div element
+                let entryEl = document.createElement('div');
+                entryEl.innerHTML = inputValue; // Set its inner HTML to inputValue
+                
+                // Append the new div element to the container
+                document.getElementById('entries-ctn').appendChild(entryEl);
             }
+            console.log(Array.from(form.entries()).length === cardData.length)
+            if (Array.from(form.entries()).length === cardData.length) {
+            const submitBtn = document.createElement('button');
+            submitBtn.innerHTML = "Submit";
+            submitBtn.classList.add('btn')
+            submitBtn.addEventListener('click', function() {
+                submitForm(form);
+            });
+            document.querySelector('#entries-ctn').appendChild(submitBtn);
+        }
         });
         // Append card to the DOM;
+
         document.querySelector('#cards_ctn').appendChild(cardDiv);
-    }
+
+}
 });
+
 
 
 
