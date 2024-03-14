@@ -1,6 +1,8 @@
 
-# Readme
 
+# Readme
+ - Logo mountain
+ - Too much white space at the top
 
 ___
 ## Credits:

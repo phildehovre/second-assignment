@@ -90,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let inputValue
         // Create form elements based on the type of form data;
+        // Creating RADIO;
         if (cardData[card].type === 'radio') {
             for (let option in cardData[card].options) {
                 let radio = document.createElement('input');
@@ -106,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         }
+        // Creating TEXTAREA;
         if (cardData[card].type === 'textarea') {
             let textarea = document.createElement('textarea');
             textarea.name = cardData[card].name;
@@ -114,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 inputValue = e.target.value
             });
         }
+        // Creating DATALIST;
         if (cardData[card].type === 'datalist') {
             let datalist = document.createElement('datalist');
             datalist.id = cardData[card].id;

@@ -1,54 +1,69 @@
 .card {
-    background-color: rgba(255, 255, 255, 0.185);
-    padding: 1rem 2rem;
-    border-radius: 6px;
-    backdrop-filter: blur(5px);
-    mix-blend-mode: hard-light;
 }
+
 
 .card:hover {
-    background-color: rgba(255, 255, 255, 0.404);
-    color: var(--primary);
-    transition: 250ms ease-in-out all;
 }
 
-
-
-.feature h2 {
-    display: inline;
-    width: 40%;
-    vertical-align: middle;
-    margin-left: .5em;
-}
-.feature {
-    cursor: pointer;
-}
-.feature p {
-    color: inherit;
-}
-
-.content{ 
-    display: none;
-}
-
-.feature--active .content {
-    display: block;
-
+.features_section {
+    background: linear-gradient(to top right,rgb(6, 7, 32), rgba(5, 59, 141, 1), rgba(59, 33, 156, 0.7)), url('grainy_texture.jpg');
+    background-size: cover;
+    background-blend-mode: overlay;
+    color: white;
 }
 
 .features_ctn {
-    padding: 2rem 2rem;
     display: flex;
-    gap: 1rem;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.feature h2 {
+}
+.feature {
+    width: var(--mobile-clamp);
+}
+
+.feature-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.feature-header:hover{
+    cursor: pointer;
+}
+.feature-header:hover > i{
+    animation: all 0.5s ease-in-out;
+}
+.feature-header:hover > .fa-magnifying-glass{
+    animation: swoop 0.5s ease-in-out;
+}
+.feature-header:hover > .fa-hammer{
+    animation: smash 0.5s ease-in-out;
+}
+.feature-header:hover > .fa-hand-fist{
+    animation: lift 0.5s ease-in-out;
+}
+
+
+.feature p {
+}
+
+.content{ 
+}
+
+.feature--active .content {
+}
+
+.features_ctn {
 }
 
 
 .features_section {
-    background: url('../pictures/pexels-harry-cooke-6195041.jpg') no-repeat center center/cover;
-    background-attachment: fixed;
-    margin: auto;
-    width: 100%;
 
 }
 #features {
@@ -65,5 +80,46 @@
     }
     .feature {
         width: 50%;
+    }
+}
+
+
+@keyframes lift {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes smash {
+    0% {
+        transform:  rotate(0);
+    }
+    50% {
+        transform: translateY(10px) rotate(45deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+@keyframes swoop {
+    0% {
+        transform: rotate(0);
+    }
+    10% {
+        transform: translateX(-15px) ;
+    }
+    40% {
+        transform: translateX(-15px) rotate(90deg);
+    }
+    50% {
+    }
+    100% {
+        transform: rotate(0);
     }
 }
