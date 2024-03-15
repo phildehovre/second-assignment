@@ -1,14 +1,5 @@
-.card {
-}
-
-
-.card:hover {
-}
-
 .features_section {
-    background: linear-gradient(to top right,rgb(6, 7, 32), rgba(5, 59, 141, 1), rgba(59, 33, 156, 0.7)), url('grainy_texture.jpg');
-    background-size: cover;
-    background-blend-mode: overlay;
+
     color: white;
 }
 
@@ -20,10 +11,20 @@
     text-align: center;
 }
 
-.feature h2 {
-}
 .feature {
     width: var(--mobile-clamp);
+    display: grid;
+    grid-template-rows: 0fr;
+    box-shadow: 0 -10px 5px  rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+}
+
+.feature:hover {
+    grid-template-rows: 1fr;
+}
+
+.feature > div {
+    overflow: hidden;
 }
 
 .feature-header{
@@ -49,37 +50,40 @@
     animation: lift 0.5s ease-in-out;
 }
 
-
-.feature p {
-}
-
-.content{ 
-}
-
-.feature--active .content {
-}
-
-.features_ctn {
-}
-
-
-.features_section {
-
-}
-#features {
-    /* background: url('../pictures/pexels-david-kanigan-15571684\ \(1\).jpg') no-repeat center center/cover; */
-}
+.accordion-wrapper {
+    display: grid;
+     grid-template-rows: 0fr;
+     /* margin: 1rem;
+     padding: 1rem; */
+     transition: grid-template-rows 500ms ease-in-out;
+     border-radius: 6px
+     
+   }
+   
+   .accordion-wrapper > div {
+     overflow: hidden;
+   }
+   
+   .feature-header:hover~.accordion-wrapper {
+     grid-template-rows: 1fr;
+   }
 
 @media screen and (min-width: 768px) {
     .features_ctn {
         gap: 2rem;
         flex-direction: row;
+        align-items: flex-start;
     }
     .features_ctn h1 {
         display: block;
     }
     .feature {
         width: 50%;
+    box-shadow: none;
+    }
+    .accordion-wrapper {
+        grid-template-rows: 1fr;
+    
     }
 }
 

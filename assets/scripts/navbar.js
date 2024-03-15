@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     </ul>
 </nav>`
+
     let navContainers = document.querySelectorAll('.nav-placeholder')
     navContainers.forEach(container => {
         container.innerHTML = navbar
