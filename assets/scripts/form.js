@@ -71,23 +71,26 @@ function submitForm(form) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("reset?")
     /**
      * @function
      * @description This function creates the form cards and appends them to the DOM.
      */
     var form = new FormData(document.querySelector('form'));
+    let cardCounter = cardData.length;
     
     for (let card in cardData) {
         // Create card element that will be targeted for animation;
         let cardDiv = document.createElement('div');
         cardDiv.classList.add('form-card');
-        cardDiv.id = cardData[card].id;
+        cardDiv.classList.add('bg-blue');
         cardDiv.innerHTML = `
-            <h2>${cardData[card].label}</h2>
-            <p>${cardData[card].placeholder}</p>
+        <h2>${cardData[card].label}</h2>
+        <p>${cardData[card].placeholder}</p>
         `;
+        
 
+        
+        
         let inputValue
         // Create form elements based on the type of form data;
         // Creating RADIO;
@@ -95,12 +98,13 @@ document.addEventListener('DOMContentLoaded', function() {
             for (let option in cardData[card].options) {
                 let radio = document.createElement('input');
                 radio.type = 'radio';
-                radio.name = cardData[card].name;
+                radio.name = cardData[card].options[option].value;
+                radio.id = cardData[card].options[option].value;
                 radio.value = cardData[card].options[option].value;
                 let label = document.createElement('label');
                 label.htmlFor = cardData[card].options[option].value;
                 label.innerHTML = cardData[card].options[option].label;
-                cardDiv.appendChild(radio);
+                label.appendChild(radio);
                 cardDiv.appendChild(label);
                 radio.addEventListener('click', function(e) {
                     inputValue = e.target.value
@@ -112,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let textarea = document.createElement('textarea');
             textarea.name = cardData[card].name;
             cardDiv.appendChild(textarea);
+            textarea.focus();
             textarea.addEventListener('input', function(e) {
                 inputValue = e.target.value
             });
@@ -131,16 +136,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 inputValue = e.target.value
             });
             input.setAttribute('list', cardData[card].id);
+            input.focus();
             cardDiv.appendChild(input);
             cardDiv.appendChild(datalist);
+
         }
         
         // Initial card styles for "stacking" visual effect;
         cardDiv.style.zIndex = cardData.length - card
         cardDiv.style.position = "absolute";
-        cardDiv.style.top = `${card * 20}px`;
-        cardDiv.addEventListener('click', function(e) {
+        cardDiv.style.top = `${card * 10}px`;
+        // cardDiv.style.left = `${card * 5}px`;
+
+        // Create overlay div for transparency effect;
+        let overlayDiv = document.createElement('div');
+        overlayDiv.classList.add('card-overlay');
+        cardDiv.appendChild(overlayDiv)
+
+        function validateInputAndTransition() {
             if (inputValue) {
+                // Initiate the transition effect;
                 cardDiv.classList.add('transition');
                 form.append(cardData[card].name, inputValue);
                 
@@ -151,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Append the new div element to the container
                 document.getElementById('entries-ctn').appendChild(entryEl);
             }
-            console.log(Array.from(form.entries()).length === cardData.length)
+            
             if (Array.from(form.entries()).length === cardData.length) {
             const submitBtn = document.createElement('button');
             submitBtn.innerHTML = "Submit";
@@ -161,10 +176,18 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             document.querySelector('#entries-ctn').appendChild(submitBtn);
         }
+        }
+
+        cardDiv.addEventListener('click', (e) => validateInputAndTransition(e));
+        cardDiv.addEventListener('keydown', (e) => {
+            if (e.key === "Enter") validateInputAndTransition(e)
         });
+
         // Append card to the DOM;
 
         document.querySelector('#cards_ctn').appendChild(cardDiv);
+
+        
 
 }
 });

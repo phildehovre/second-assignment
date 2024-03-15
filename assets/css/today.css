@@ -1,9 +1,15 @@
+* {
+    /* outline: 1px solid red */
+}
+
 .today_ctn {
     margin: auto;
     display: flex;
     gap: 1rem;
     flex-direction: column;
     max-width: 750px;
+    height: 100%;
+    align-items: center;
 }
 
 .form_ctn {
@@ -11,6 +17,7 @@
     flex-direction: column;
     gap: 1rem;
     justify-content: flex-start;
+    align-items: center;
 
 }
 
@@ -27,7 +34,6 @@
 }
 
 .form-card {
-    background-color: #f4f4f4;
     padding: 20px;
     margin: 20px;
     width: 100%;
@@ -35,9 +41,21 @@
     border-radius: 10px;
     box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    opacity: 1;
+    position: relative;
+    z-index: 100;
+    /* background-color: var(--primary); */
 }
+
 .form-card > input {
+    padding: 1rem;
+    border: 1px solid lightgrey;
+    border-radius: 6px;   
+    text-align: center;
+}
+.form-card > label:hover {
+    color: orange;
+}
+.form-card > textarea {
     padding: 1rem;
     border: 1px solid lightgrey;
     border-radius: 6px;   
@@ -46,6 +64,23 @@
 .form-card.transition {
     animation: slideOut 0.5s forwards ease-in-out;
 }
+
+.card-overlay {
+    content: '';
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.116);
+    z-index: -99;
+}
+
+.form-card.transition > .card-overlay {
+    animation: fadeOut 0.5s forwards ease-in-out;
+}
+
 
 @keyframes slideOut {
     0% {
@@ -61,6 +96,15 @@
     }
     100% {
         transform: translate(-100%, 0%);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
         opacity: 0;
     }
 }
