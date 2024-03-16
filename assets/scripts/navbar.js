@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <a href="/">
             <div id="logo_placeholder"></div>
         </a>
-        <ul id="nav-list">
+        <ul id="desktop_nav">
             <div id="follower"></div>
         </ul>
         <ul id="mobile_nav">
@@ -46,14 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
     follower.style = `
     opacity: 0;
     `
-  const list = document.querySelector("#nav-list")
+  const list = document.querySelector("#desktop_nav")
   list.addEventListener("mouseenter", () => {
     follower.style = `opacity: 1;`
   })
   list.addEventListener("mouseleave", () => {
     follower.style = `
-    transform: scaleY(0%); 
-    transform-origin: top;
     opacity: 0; 
     transition: all 0.5s ease-in-out;`
   })

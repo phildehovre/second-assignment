@@ -8,7 +8,7 @@
     gap: 1rem;
     flex-direction: column;
     max-width: 750px;
-    height: 100%;
+    min-height: 50svw;
     align-items: center;
 }
 
