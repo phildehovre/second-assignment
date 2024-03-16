@@ -66,7 +66,7 @@ const cardData = [
 
 function submitForm(form) {
     console.log("submitting form")
-    console.log(...form.entries())
+    console.log(form.entries())
 }
 
 
@@ -74,10 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * @function
      * @description This function creates the form cards and appends them to the DOM.
-     */
-    var form = new FormData(document.querySelector('form'));
-    let cardCounter = cardData.length;
-    
+    */
+   const form = new FormData(document.querySelector('form'));
+   const cardContainer = document.querySelector('#cards_ctn')
+
+   
     for (let card in cardData) {
         // Create card element that will be targeted for animation;
         let cardDiv = document.createElement('div');
@@ -87,9 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
         <h2>${cardData[card].label}</h2>
         <p>${cardData[card].placeholder}</p>
         `;
-        
-
-        
         
         let inputValue
         // Create form elements based on the type of form data;
@@ -116,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
             let textarea = document.createElement('textarea');
             textarea.name = cardData[card].name;
             cardDiv.appendChild(textarea);
-            textarea.focus();
             textarea.addEventListener('input', function(e) {
                 inputValue = e.target.value
             });
@@ -136,24 +133,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 inputValue = e.target.value
             });
             input.setAttribute('list', cardData[card].id);
-            input.focus();
             cardDiv.appendChild(input);
             cardDiv.appendChild(datalist);
-
         }
+        
         
         // Initial card styles for "stacking" visual effect;
         cardDiv.style.zIndex = cardData.length - card
         cardDiv.style.position = "absolute";
         cardDiv.style.top = `${card * 10}px`;
-        // cardDiv.style.left = `${card * 5}px`;
-
+        
         // Create overlay div for transparency effect;
         let overlayDiv = document.createElement('div');
         overlayDiv.classList.add('card-overlay');
         cardDiv.appendChild(overlayDiv)
-
+        
+        
+        function inputFocus(element, type) {
+            console.log(element, type)
+            if (type === 'radio') return;
+            let input = element.getElementsByTagName(type)[0]
+            console.log(input)
+                input.focus();
+        }
+        
         function validateInputAndTransition() {
+            let cardCounter = cardData.length - card;
             if (inputValue) {
                 // Initiate the transition effect;
                 cardDiv.classList.add('transition');
@@ -161,31 +166,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Create a new div element
                 let entryEl = document.createElement('div');
-                entryEl.innerHTML = inputValue; // Set its inner HTML to inputValue
+                entryEl.classList.add('entry-record');
+                entryEl.dataset.entryId = cardData[card].id;
+                entryEl.addEventListener('click', function(e) {
+                    form.append(cardData[card].name, inputValue);
+                });
+                entryEl.innerHTML = `
+                <h3>${cardData[card].label}</h3>
+                <p>${inputValue}</p>
+                `; // Set its inner HTML to inputValue
                 
+
                 // Append the new div element to the container
                 document.getElementById('entries-ctn').appendChild(entryEl);
             }
             
             if (Array.from(form.entries()).length === cardData.length) {
-            const submitBtn = document.createElement('button');
-            submitBtn.innerHTML = "Submit";
-            submitBtn.classList.add('btn')
-            submitBtn.addEventListener('click', function() {
-                submitForm(form);
-            });
+                const submitBtn = document.createElement('button');
+                submitBtn.innerHTML = "Submit";
+                submitBtn.classList.add('btn')
+                submitBtn.addEventListener('click', function() {
+                    submitForm(form);
+                });
             document.querySelector('#entries-ctn').appendChild(submitBtn);
         }
-        }
+        inputFocus(cardDiv, cardData[card].type);
+    }
 
-        cardDiv.addEventListener('click', (e) => validateInputAndTransition(e));
-        cardDiv.addEventListener('keydown', (e) => {
-            if (e.key === "Enter") validateInputAndTransition(e)
-        });
+    cardDiv.addEventListener('click', (e) => validateInputAndTransition(e));
+    cardDiv.addEventListener('keydown', (e) => {
+        if (e.key === "Enter") validateInputAndTransition(e)
+    });
 
-        // Append card to the DOM;
+// Append card to the DOM;
 
-        document.querySelector('#cards_ctn').appendChild(cardDiv);
+cardContainer.appendChild(cardDiv);
 
         
 

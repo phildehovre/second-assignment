@@ -81,6 +81,24 @@
     animation: fadeOut 0.5s forwards ease-in-out;
 }
 
+#entries-ctn {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+.entry-record{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 16px;;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
 
 @keyframes slideOut {
     0% {
