@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // desktop nav animation
-    let nav = document.querySelector('.nav--main');
+    let nav = document.querySelector('.nav_main');
     if (nav !== null) {
         setTimeout(function() {
             nav?.classList.add('nav--show');
@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });}
 })
 
-    const navMain = document.querySelector('.nav--main');
-    const navPlaceholders = document.querySelectorAll('.nav-placeholder');
+    const navMain = document.querySelector('.nav_main');
+    const navPlaceholders = document.querySelectorAll('.nav_placeholder');
     if (navMain) {
         navPlaceholders.forEach((placeholder) => {
             placeholder.appendChild(navMain);

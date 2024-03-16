@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     for (let card in cardData) {
         // Create card element that will be targeted for animation;
         let cardDiv = document.createElement('div');
-        cardDiv.classList.add('form-card');
+        cardDiv.classList.add('form_card');
         cardDiv.classList.add('bg-blue');
         cardDiv.innerHTML = `
         <h2>${cardData[card].label}</h2>
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Create overlay div for transparency effect;
         let overlayDiv = document.createElement('div');
-        overlayDiv.classList.add('card-overlay');
+        overlayDiv.classList.add('card_overlay');
         cardDiv.appendChild(overlayDiv)
         
         
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Create a new div element
                 let entryEl = document.createElement('div');
-                entryEl.classList.add('entry-record');
+                entryEl.classList.add('entry_record');
                 entryEl.dataset.entryId = cardData[card].id;
                 entryEl.addEventListener('click', function(e) {
                     form.append(cardData[card].name, inputValue);
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
 
                 // Append the new div element to the container
-                document.getElementById('entries-ctn').appendChild(entryEl);
+                document.getElementById('entry_ctn').appendChild(entryEl);
             }
             
             if (Array.from(form.entries()).length === cardData.length) {
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.addEventListener('click', function() {
                     submitForm(form);
                 });
-            document.querySelector('#entries-ctn').appendChild(submitBtn);
+            document.querySelector('#entry_ctn').appendChild(submitBtn);
         }
         inputFocus(cardDiv, cardData[card].type);
     }

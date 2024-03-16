@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     let navbar = `        
-    <nav class="nav--main">
+    <nav class="nav_main">
         <a href="/">
             <div id="logo_placeholder"></div>
         </a>
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </ul>
 </nav>`
 
-    let navContainers = document.querySelectorAll('.nav-placeholder')
+    let navContainers = document.querySelectorAll('.nav_placeholder')
     navContainers.forEach(container => {
         container.innerHTML = navbar
     })
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })
   navButtons.forEach((button, index) => {
     let item = document.createElement('li')
-    item.classList.add('nav-link')
+    item.classList.add('nav_link')
     item.id = (`index-${index}`)
 
     let link = document.createElement('a')
@@ -76,3 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })
 
+document.addEventListener('scroll', () => {
+    let nav = document.querySelector('.nav_main')
+    if (window.scrollY > 1) {
+        nav.style = `transition: all 0.5s ease-in-out;`
+        nav.classList.add('scrolled')
+    } else {
+        nav.classList.remove('scrolled')
+    }
+})
