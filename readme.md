@@ -11,6 +11,7 @@ The goal is to identify patterns of behaviour and their potentially less than po
 I have have recently taken a keen interest in applications that help improving mental and physical health, not simply by monitoring the user's physical activity,
 but by giving the users a 30,000ft view of their situation. This is based on the concept of motivational interviewing techniques (or, "MI"). 
 
+
 > “Motivational interviewing is a person-centered counseling style for addressing the common problem of ambivalence about change.”
 > —Miller & Rollnick, 2013, p. 21
 
@@ -114,3 +115,11 @@ ___
 picture by Photo by David Kanigan: https://www.pexels.com/photo/silhouette-of-a-lonely-tree-during-sunset-15571684/
 
 ___
+
+## Additional resources:
+
+Motivational interviewing techniques:
+> Enhancing Motivation for Change in Substance Use Disorder Treatment
+> Updated 2019
+> Treatment Improvement Protocol (TIP) Series, No. 35
+> Rockville (MD): Substance Abuse and Mental Health Services Administration (US); 2019.
