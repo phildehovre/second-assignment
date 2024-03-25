@@ -8,6 +8,12 @@ The goal is to identify patterns of behaviour and their potentially less than po
 
 ### How? 
 
+I have have recently taken a keen interest in applications that help improving mental and physical health, not simply by monitoring the user's physical activity,
+but by giving the users a 30,000ft view of their situation. This is based on the concept of motivational interviewing techinques (or, "MI"). 
+
+> “Motivational interviewing is a person-centered counseling style for addressing the common problem of ambivalence about change.”
+> —Miller & Rollnick, 2013, p. 21
+
 The user is initally given a series of questions to establish their profile and determine what kind of issues they are facing or set of habits they want to monitor.
 (Disclaimer: For the time being, the questions that currently appear on the website are placeholders for the initial line of questionning and are neither dynamic nor recorded on a sever).
 
@@ -29,11 +35,7 @@ This will populate a dashboard that is specifically tailored to their profile.
 
 ## Inception
 
-I have have recently taken a keen interest in applications that help improving mental and physical health, not simply by monitoring the user's physical activity,
-but by giving the users a 30,000ft view of their situation. This is based on the concept of motivational interviewing techinques (or, "MI"). 
 
-> “Motivational interviewing is a person-centered counseling style for addressing the common problem of ambivalence about change.”
-> —Miller & Rollnick, 2013, p. 21
 
 ___
 ## Credits:
