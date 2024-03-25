@@ -1,8 +1,31 @@
 
 
 # Readme
- - Logo mountain
- - Too much white space at the top
+## Concept
+
+Stability is a journalling application that allows users to track and monitor day-to-day habits and moods. 
+The goal is to identify patterns of behaviour and their potentially less than positive consequences on one's mental and physical health.
+
+### How? 
+
+The user is initally given a series of questions to establish their profile and determine what kind of issues they are facing or set of habits they want to monitor.
+(Disclaimer: For the time being, the questions that currently appear on the website are placeholders for the initial line of questionning and are neither dynamic nor recorded on a sever).
+
+(Not yet implemented)
+The data will be piped through a large language model that will extract and organise the data into several categories and generate a new set of questions.
+Everyday, the model will digest the data and customise the line of questionning to help the user make informed decisions about their issues.
+
+For example: 
+- Day 0: The user states one of their goals to be "improve physical health";
+  - This will generate a dedicated portion of the dashboard to include a set of options for the user to start investigating their options.
+    These might include giving them some options for how to go about achieving that goal and maybe set a deadline for taking those first steps.
+    (Picking a physical activity they like, joining a gym and browsing the classes they offer, checking out online yoga classes, joining a local football team, etc.)
+    
+- Day 1 or n (depending on deadline): A new set of questions is generated based on the initial footprint. These questions will check on the progess, mood and overall mindset.
+  
+- Day n + 1: Narrow down on previous set of answers and repeat the process.
+  
+This will populate a dashboard that is specifically tailored to their profile.
 
 ___
 ## Credits:
