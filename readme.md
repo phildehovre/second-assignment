@@ -119,6 +119,7 @@ ___
 ## Additional resources:
 
 Motivational interviewing techniques:
+[https://www.ncbi.nlm.nih.gov/books/NBK571071/]
 > Enhancing Motivation for Change in Substance Use Disorder Treatment
 > Updated 2019
 > Treatment Improvement Protocol (TIP) Series, No. 35
