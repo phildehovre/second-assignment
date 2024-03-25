@@ -33,7 +33,21 @@ For example:
   
 This will populate a dashboard that is specifically tailored to their profile.
 
-## Inception
+## Project breakdown
+
+### Folder organisation
+
+#### HTML
+
+Located at the top level of the codebase are all html markup files, each file contains the structure for the pages the user is able to visit.
+Within each file are two placeholders, one for the navigation bar, the other for the footer. Since their content is the same on every page,
+it is injected via Javascript.
+
+#### Assets
+
+Contains three folders that separate the **stylesheets**, **images & icons** and **scripts**.
+
+
 
 
 
