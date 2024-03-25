@@ -45,8 +45,19 @@ it is injected via Javascript.
 
 #### Assets
 
-Contains three folders that separate the **stylesheets**, **images & icons** and **scripts**.
+The assets folder contains three folders that separate the **stylesheets**, **images & icons** and **scripts**.
+For more information, it is recommended to peek into the files themselves, where plenty of explicit comments punctuate the code itself.
 
+
+## Development
+
+### Initial
+
+
+### Visual design
+
+
+### The mechanics
 
 
 
