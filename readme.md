@@ -9,7 +9,7 @@ The goal is to identify patterns of behaviour and their potentially less than po
 ### How? 
 
 I have have recently taken a keen interest in applications that help improving mental and physical health, not simply by monitoring the user's physical activity,
-but by giving the users a 30,000ft view of their situation. This is based on the concept of motivational interviewing techinques (or, "MI"). 
+but by giving the users a 30,000ft view of their situation. This is based on the concept of motivational interviewing techniques (or, "MI"). 
 
 > “Motivational interviewing is a person-centered counseling style for addressing the common problem of ambivalence about change.”
 > —Miller & Rollnick, 2013, p. 21
