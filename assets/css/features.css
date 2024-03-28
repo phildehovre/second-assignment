@@ -53,8 +53,6 @@
 .accordion-wrapper {
     display: grid;
      grid-template-rows: 0fr;
-     /* margin: 1rem;
-     padding: 1rem; */
      transition: grid-template-rows 500ms ease-in-out;
      border-radius: 6px
      
