@@ -71,13 +71,15 @@ discern it. This is a small design element that has, in my view, a strong visual
 Initially, the website recorded below average performance. upon further inspecting, lowering the quality of the image (Using Cloudinary) proved to be the determining factor in improving it.
 
 Initially:
+
 ![Screenshot 2024-03-28 120226](https://github.com/phildehovre/first-assignment/assets/66724307/227312af-9fa2-4d2e-896d-a63d8c90f36a)
 
 Image reduced to 60% quality and served as a .webp:
+
 ![Screenshot 2024-03-28 120935](https://github.com/phildehovre/first-assignment/assets/66724307/219b3f3f-4105-4225-8b30-b44bbdd4b7dd)
 
 Image reduced to 50% quality:
-![Screenshot 2024-03-28 121108](https://github.com/phildehovre/first-assignment/assets/66724307/04ee7a9d-29de-457e-8815-f6016ea700f4)
+
 ![Screenshot 2024-03-28 121425](https://github.com/phildehovre/first-assignment/assets/66724307/641a60c3-49a5-4c40-a59e-593a5396841a)
 
 - [x] Learning Outcomes
