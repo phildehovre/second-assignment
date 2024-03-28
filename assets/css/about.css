@@ -3,7 +3,8 @@
     display: flex;
     gap: 1rem;
     flex-direction: column;
-    max-width: 750px
+    max-width: 750px;
+    color: var(--primary)
 }
 .about_card{
     background-color: var(--secondary-o1);

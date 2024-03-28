@@ -141,15 +141,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initial card styles for "stacking" visual effect;
         cardDiv.style.zIndex = cardData.length - card
         cardDiv.style.position = "absolute";
-        cardDiv.style.top = `${card * 10}px`;
-        
-        // Create overlay div for transparency effect except top card;
-        if (card > 0) {
-            let overlayDiv = document.createElement('div');
-            overlayDiv.classList.add('card_overlay');
-            cardDiv.appendChild(overlayDiv)
-        }
-        
+        cardDiv.style.top = `${card * 15}px`;
+        cardDiv.style.marginLeft = `${card * 5}px`;
         
         function inputFocus(element, type) {
             console.log(element, type)
@@ -160,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         function validateInputAndTransition() {
-            let cardCounter = cardData.length - card;
             if (inputValue) {
                 // Initiate the transition effect;
                 cardDiv.classList.add('transition');
@@ -174,8 +166,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     form.append(cardData[card].name, inputValue);
                 });
                 entryEl.innerHTML = `
-                <h3>${cardData[card].label}</h3>
-                <p>${inputValue}</p>
+                <p>${cardData[card].label}</p>
+                <h3>${inputValue}</h3>
                 `; // Set its inner HTML to inputValue
                 
 
@@ -183,6 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('entry_ctn').appendChild(entryEl);
             }
             
+            console.log(Array.from(form.entries()).length === cardData.length)
             if (Array.from(form.entries()).length === cardData.length) {
                 const submitBtn = document.createElement('button');
                 submitBtn.innerHTML = "Submit";
