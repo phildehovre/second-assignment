@@ -121,8 +121,6 @@
     40% {
         transform: translateX(-15px) rotate(90deg);
     }
-    50% {
-    }
     100% {
         transform: rotate(0);
     }
