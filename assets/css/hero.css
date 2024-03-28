@@ -47,12 +47,12 @@
     background: url('../pictures/pexels-guillaume-meurice-2873671.jpg') no-repeat center center/cover;
     background-clip: text;
     -webkit-background-attachment: fixed;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     -moz-background-attachment: fixed;
     -o-background-attachment: fixed;
     background-attachment: fixed;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-attachment: fixed;
+    width: 100%;
 }
 
 .shift {

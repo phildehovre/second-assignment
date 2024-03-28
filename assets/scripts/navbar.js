@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     let navbar = `        
     <nav class="nav_main">
-        <a href="/">
+        <a href="/" aria-label="Logo, Navigate to home">
             <div id="logo_placeholder"></div>
         </a>
         <ul id="desktop_nav">

@@ -4,7 +4,7 @@
     height: 2px;
     margin: 4px auto;
     transition: all 0.3s ease-in-out;
-    background-color: black;
+    background-color: var(--primary);
     transition: 250ms ease-in-out all;
 
 }
@@ -22,6 +22,7 @@
     
 }
 .hamburger_ctn.active .bar.top{
+
     transform: translateY(10px) rotate(45deg);
     
 }
