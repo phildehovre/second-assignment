@@ -143,10 +143,12 @@ document.addEventListener('DOMContentLoaded', function() {
         cardDiv.style.position = "absolute";
         cardDiv.style.top = `${card * 10}px`;
         
-        // Create overlay div for transparency effect;
-        let overlayDiv = document.createElement('div');
-        overlayDiv.classList.add('card_overlay');
-        cardDiv.appendChild(overlayDiv)
+        // Create overlay div for transparency effect except top card;
+        if (card > 0) {
+            let overlayDiv = document.createElement('div');
+            overlayDiv.classList.add('card_overlay');
+            cardDiv.appendChild(overlayDiv)
+        }
         
         
         function inputFocus(element, type) {

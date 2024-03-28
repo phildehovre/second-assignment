@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="footer_column">
         <h3>Stability</h3>
         <ul>
-        <li><a href="#">About us</a></li>
+        <li><a href="/about.html">About us</a></li>
         <li><a href="#">FAQ</a></li>
-        <li><a href="#">Features</a></li>
-        <li><a href="#">Get started</a></li>
+        <li><a href="/about.html">Features</a></li>
+        <li><a href="/today.html">Get started</a></li>
         </ul>
         </div>
         <div class="footer_column">
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <ul>
         <li><a href="#">Privacy policy</a></li>
         <li><a href="#">Disclaimer</a></li>
-        <li><a href="#">Works for us</a></li>
+        <li><a href="#">Work for us</a></li>
         </ul>
         </div>
         `
