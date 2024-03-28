@@ -52,10 +52,13 @@ For more information, it is recommended to peek into the files themselves, where
 
 ## Development
 
-### Initial
-
-
 ### Visual design
+
+The overall theme for the application revolves around white and a dark blue. These colors evoke calm and should convey a sense of peace.
+
+I am fond of websites that have a minimalist design style and I tried to reproduce this.
+For example, the first thing you see when opening the app is the word Stability fading into view, revealing a starry fixed background that provides the contrast needed to 
+discern it. This is a small design element that has, in my view, a strong visual payoff and takes up very little page real estate.
 
 
 ### The mechanics
@@ -63,10 +66,25 @@ For more information, it is recommended to peek into the files themselves, where
 
 
 
-## Learning Outcomes:
+## Performance:
+
+Initially, the website recorded below average performance. upon further inspecting, lowering the quality of the image (Using Cloudinary) proved to be the determining factor in improving it.
+
+Initially:
+
+![Screenshot 2024-03-28 120226](https://github.com/phildehovre/first-assignment/assets/66724307/227312af-9fa2-4d2e-896d-a63d8c90f36a)
+
+Image reduced to 60% quality and served as a .webp:
+
+![Screenshot 2024-03-28 120935](https://github.com/phildehovre/first-assignment/assets/66724307/219b3f3f-4105-4225-8b30-b44bbdd4b7dd)
+
+Image reduced to 50% quality:
+
+![Screenshot 2024-03-28 121425](https://github.com/phildehovre/first-assignment/assets/66724307/641a60c3-49a5-4c40-a59e-593a5396841a)
 
 - [x] Learning Outcomes
-  - [x] LO1 Design an interactive Front-End web application using HTML and CSS based on the principles of user experience design, accessibility and responsivity
+  - [x] LO1 Design an interactive Front-End web application using HTML and CSS based on the principles of user experience design, accessibility and res
+ponsivity
   - [x] LO2 Test a Front-End web application through the development, implementation and deployment stages
   - [x] LO3 Deploy a Front-End web application to a Cloud platform
   - [x] LO4 Maximise future maintainability through documentation, code structure and organisation
