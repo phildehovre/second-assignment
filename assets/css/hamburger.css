@@ -81,7 +81,7 @@
     display: block;
     animation: stagger 0.3s ease-in-out forwards;
     animation-delay: calc(var(--order) * 0.1s);
-    background-color:var(--secondary);
+    background-color:var(--primary-light);
     color: var(--primary);
     margin-top: -1px;
 }
