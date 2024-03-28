@@ -1,5 +1,4 @@
 .features_section {
-
     color: white;
 }
 
@@ -21,10 +20,6 @@
 
 .feature:hover {
     grid-template-rows: 1fr;
-}
-
-.feature > div {
-    overflow: hidden;
 }
 
 .feature-header{
