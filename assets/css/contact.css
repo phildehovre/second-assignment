@@ -18,9 +18,9 @@
 .form_input {
     padding: 1rem;
     border: none;
-    background-color: var(--secondary-o1);
     border-radius: 5px;
-    background-color: var(--secondary);
+    background-color: var(--primary-light);
+    font-family: inherit;
 }
 
 

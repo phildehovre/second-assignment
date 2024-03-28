@@ -75,6 +75,11 @@
     font-weight: 300;
 }
 
+.desktop {
+    display: none;
+
+}
+
 @keyframes shiftup {
     0% {
         opacity: 0;
@@ -115,9 +120,38 @@
 
 @media screen and (min-width: 768px) {
     #heading {
-        font-size: 12rem;
+        margin: 0;
+        font-size: 10rem;
     }
     #subheading {
         font-size: 4rem;
+    }
+
+    #slogan-ctn {
+        min-height: fit-content;
+    }
+
+    #hero_ctn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        min-height: 80svh
+    }
+
+    #hero-description {
+        height: 100%;
+        
+        > p {
+            height: 100%;
+            text-align: center;
+            font-size: 2rem;
+            padding: 0 2em 0 2em;
+            margin: auto;
+        }
+    }
+
+    .mobile {
+        display: none;
     }
 }

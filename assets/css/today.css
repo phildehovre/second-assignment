@@ -54,6 +54,7 @@
     border-radius: 6px;   
     text-align: center;
     border: 1px solid var(--primary);
+    font-family: inherit;
 }
 .form_card > label:hover {
     color: orange;
