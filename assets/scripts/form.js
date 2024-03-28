@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 entryEl.innerHTML = `
                 <p>${cardData[card].label}</p>
-                <h3>${inputValue}</h3>
+                <p class="entry-answer">${inputValue}</p>
                 `; // Set its inner HTML to inputValue
                 
 

@@ -101,7 +101,10 @@
         text-align: left;
         
     }
-    > h3 {
+    
+    > .entry-answer {
+        font-size: larger;
+        font-weight: bold;
         margin: 0.5rem;
         width: 100%;
     }
