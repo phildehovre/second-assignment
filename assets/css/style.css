@@ -248,6 +248,14 @@ main {
 
 @media (min-width: 768px) {
 
+    #hero-ctn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 80svh;
+    }
+
     nav {
         padding: 0 0 0 2rem;
     }
@@ -303,6 +311,7 @@ main {
 
 
 @media (min-width: 1100px) {
+
     .testimonials_ctn {
         display: grid;
         grid-template-columns: 1fr 1fr;
