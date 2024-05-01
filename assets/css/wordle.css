@@ -22,7 +22,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
+            transition: 250ms ease-in-out all;
+            
             &.existing {
                 background-color: var(--primary-light);
                 color: var(--primary);
@@ -32,6 +33,11 @@
                 background-color: var(--primary);
                 color: var(--white);
 
+            }
+
+            &.checked {
+                animation: scaleY 250ms ease-in-out;
+                animation-delay: calc(var(--delay) * 100ms);
             }
         }
     }
@@ -75,5 +81,14 @@
             box-shadow: 3px 3px 4px var(--primary) inset;
 
         }
+    }
+}
+
+@keyframes scaleY {
+    0% {
+        transform: scaleY(0)
+    }
+    100% {
+        transform: scaleY(1)
     }
 }

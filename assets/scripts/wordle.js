@@ -96,6 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         attempts.push(typed)
         typed = ''
+        cells.forEach((cell, index) => {
+            cell.style = `--delay: ${index}`
+            cell.classList.add('checked')
+        })
+        updateKeyboard(attemps)
         const currentRow = rows[attempts.length]
         cells = currentRow.querySelectorAll('.cell')
     }
@@ -149,6 +154,11 @@ function checkWord(wotd, typed) {
     }
 
     return [correct, existing, checked]
+}
+
+function updateKeyboard(array) {
+    // TODO
+    let keys = document.querySelectorAll('.keys')
 }
 
 const letters = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'Enter', 'x', 'c', 'v', 'b', 'n', 'm', 'Back']
