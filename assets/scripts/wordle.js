@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cell.style = `--delay: ${index}`
             cell.classList.add('checked')
         })
-        updateKeyboard(attemps)
+        // updateKeyboard(attemps)
         const currentRow = rows[attempts.length]
         cells = currentRow.querySelectorAll('.cell')
     }
