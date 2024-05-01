@@ -22,7 +22,7 @@
             justify-content: center;
             align-items: center;
 
-            &.exists {
+            &.existing {
                 background-color: var(--primary-light);
                 color: var(--primary);
             }
