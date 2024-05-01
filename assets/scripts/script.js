@@ -1,6 +1,8 @@
 // init
 document.addEventListener('DOMContentLoaded', function() {
 
+
+
     // desktop nav animation
     let nav = document.querySelector('.nav_main');
     if (nav !== null) {
