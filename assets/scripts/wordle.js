@@ -14,9 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rows = document.querySelectorAll('.grid_row');
     const currentRow = rows[attempts.length];
     let cells = currentRow.querySelectorAll('.cell'); 
-
-
-
+    
     // =========== Initialize WOTD =============
     /* 
     Check if cookies contains a word of the day 
@@ -24,35 +22,31 @@ document.addEventListener('DOMContentLoaded', () => {
     SET/GET and check for existence.
     Finally, cancelling the interval on a positive check.
     */
-    let wotd = CookieUtils.getCookie("wotd")
-
-    const interval = setInterval(() => {
-    if (wotd.length == 0) {
-        setNewWord()
-        wotd = getNewWord()
-        return () => clearInterval(interval)
-    }
+   let wotd = CookieUtils.getCookie("wotd")
+   
+   const interval = setInterval(() => {
+       if (wotd.length == 0) {
+           setNewWord()
+           wotd = getNewWord()
+           return () => clearInterval(interval)
+        }
     }, 100)
 
-    // =========== Registering keystrokes =============
-    document.addEventListener('keydown', (e) => {
-        // Allow for backspace functionality       
-        if (e.key == "Backspace") {
-            typed = typed.slice(0, typed.length-1)
-            cells[typed.length].textContent = ''
-        // Only allow Alphabetical characters to be appended to "typed"
-        } else if (96 < e.key.charCodeAt(0) && e.key.charCodeAt(0) < 122 ) {
-            if (typed.length < 5) {
-                typed += e.key
-                cells[typed.length - 1].textContent = e.key
-            }
-        } else if (e.key == "Enter" && typed.length == 5) {
-            const [correct, existing, checked] = checkWordandAnimate(wotd, typed, gameOver)
-            
-                // assigning classes to correct/existing letters.
+    // =========== Initialize Keyboard =============
+    let keyboard = document.querySelector('#keyboard')
+    letters.forEach(letter => {
+        let key = document.createElement('div')
+        key.classList.add('key')
+        key.textContent = letter
+
+        key.addEventListener('click', () => {
+        if (key.textContent == "Enter" && typed.length == 5) {
+                const [correct, existing ] = checkWord(wotd, typed, gameOver)
+
+                // assigning classes tobaron correct/existing letters.
                 correct.forEach((index) => {
-                cells[index].classList.add('correct')
-            })
+                    cells[index].classList.add('correct')
+                })
                 existing.forEach((index) => {
                     cells[index].classList.add('existing')
                 })
@@ -60,22 +54,61 @@ document.addEventListener('DOMContentLoaded', () => {
                 typed = ''
                 const currentRow = rows[attempts.length]
                 cells = currentRow.querySelectorAll('.cell')
-        }
+            } else if (key.textContent == "Back") {
+                typed = typed.slice(0, typed.length -1)
+                cells[typed.length].textContent = ''
+            
+            } else {
+                    typed += letter
+                    cells[typed.length - 1].textContent = letter
+            }
+        })
+        keyboard.appendChild(key)
     })
-})
 
+    // =========== Registering keystrokes =============
+    document.addEventListener('keydown', (e) => {
+    // Allow for backspace functionality       
+    if (e.key == "Backspace") {
+        typed = typed.slice(0, typed.length-1)
+        cells[typed.length].textContent = ''
+        // Only allow Alphabetical characters to be appended to "typed"
+    } else if (96 < e.key.charCodeAt(0) && e.key.charCodeAt(0) < 122 ) {
+        if (typed.length < 5) {
+            typed += e.key
+            cells[typed.length - 1].textContent = e.key
+        }
+    } else if (e.key == "Enter" && typed.length == 5) {
+        const [correct, existing, checked] = checkWord(wotd, typed, gameOver)
+        
+        // assigning classes to correct/existing letters.
+        correct.forEach((index) => {
+            cells[index].classList.add('correct')
+        })
+        existing.forEach((index) => {
+            cells[index].classList.add('existing')
+        })
+        attempts.push(typed)
+        typed = ''
+        const currentRow = rows[attempts.length]
+        cells = currentRow.querySelectorAll('.cell')
+    }
+});
+});
+
+// =========== Helper functions =============
 
 function setNewWord() {
     fetch('https://random-word-api.herokuapp.com/word?length=5')
-        .then((res) => res.json())
-        .then(res => CookieUtils.setCookie(`wotd`, res[0]))
+    .then((res) => res.json())
+    .then(res => CookieUtils.setCookie(`wotd`, res[0]))
 }
 
 function getNewWord() {
     return CookieUtils.getCookie('wotd')
 }
 
-function checkWordandAnimate(wotd, typed, gameover) {
+function checkWord(wotd, typed) {
     /**
      * This function will return two arrays of
      * indices which can then be used to select
@@ -111,3 +144,5 @@ function checkWordandAnimate(wotd, typed, gameover) {
 
     return [correct, existing, checked]
 }
+
+const letters = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'Enter', 'x', 'c', 'v', 'b', 'n', 'm', 'Back']

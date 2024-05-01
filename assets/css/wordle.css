@@ -35,3 +35,44 @@
         }
     }
 }
+
+#keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
+    width: 575px;
+    justify-content: center;
+    margin: 0 auto;
+
+    .key {
+        height: 50px;
+        min-width: 40px;
+        padding: 0 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        border: 1px solid var(--primary);
+        font-weight: bold;
+        font-size: larger;
+        text-transform: uppercase;
+        transition: 150ms all ease-in-out;
+        cursor: pointer;
+
+        &.enter {
+            width: 100px
+        }
+        &.backslash {
+            width: 100px
+        }
+
+        &:hover{
+            box-shadow: 2px 2px 2px var(--primary) inset;
+        }
+        
+        &:active {
+            box-shadow: 3px 3px 4px var(--primary) inset;
+
+        }
+    }
+}
