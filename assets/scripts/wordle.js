@@ -5,7 +5,6 @@
  * The function names chould be self explanatory
  */
 
-// Example usage:
 
 document.addEventListener('DOMContentLoaded', () => {
     let attempts = [];
@@ -14,6 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const rows = document.querySelectorAll('.grid_row');
     const currentRow = rows[attempts.length];
     let cells = currentRow.querySelectorAll('.cell'); 
+    let wotd = CookieUtils.getCookie('wotd')
+
+    const button = document.querySelector('#new')
+    button.addEventListener('click', () => {
+        window.refresh
+    })
+
     
     // =========== Initialize WOTD =============
     /* 
@@ -22,15 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
     SET/GET and check for existence.
     Finally, cancelling the interval on a positive check.
     */
-   let wotd = CookieUtils.getCookie("wotd")
    
-   const interval = setInterval(() => {
-       if (wotd.length == 0) {
-           setNewWord()
-           wotd = getNewWord()
-           return () => clearInterval(interval)
-        }
-    }, 100)
+    const wotdInterval = setInterval(() => {
+        let currentWord = CookieUtils.getCookie('wotd')
+        if (wotd == currentWord && currentWord.length !== 0) {
+            setNewWord()
+            wotd = currentWord
+            return clearInterval(wotdInterval)
+        } 
+    }, 1000)
+    
 
     // =========== Initialize Keyboard =============
     let keyboard = document.querySelector('#keyboard')
@@ -57,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (key.textContent == "Back") {
                 typed = typed.slice(0, typed.length -1)
                 cells[typed.length].textContent = ''
-            
             } else {
                     typed += letter
                     cells[typed.length - 1].textContent = letter
@@ -118,6 +124,8 @@ function checkWord(wotd, typed) {
     let existing = []
     let checked
     if (!wotd) return;
+    const attempt = typed.split('')
+    const comparator = wotd.split('')
 
 
     const hash = wotd.split('').reduce((acc, letter) => {
@@ -125,8 +133,6 @@ function checkWord(wotd, typed) {
         return acc
     }, {})
 
-    const attempt = typed.split('')
-    const comparator = Object.keys(hash)
     
     for (let i = 0; i < attempt.length ; i++) {
         if (attempt[i] === comparator[i]) {

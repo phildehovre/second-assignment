@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
 const navButtons = [
     {name: "Home", link: "/"},
     {name: "About", link: "about.html"},
-    {name: "Play", link: "phordle.html"},
+    {name: "Play", link: "phwirdle.html"},
     {name: "Contact", link: "contact.html"},
-    {name: "Start your journey", link: "today.html"},
+    // {name: "Start your journey", link: "today.html"},
 
 ]
 
