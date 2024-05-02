@@ -123,7 +123,8 @@ function resetGame() {
     // =========== Helper functions =============
 
 function setNewWord() {
-    fetch('https://random-word-api.herokuapp.com/word?length=5')
+    // fetch('https://random-word-api.herokuapp.com/word?length=5')
+    fetch('https://random-word-api.vercel.app/api?words=1&length=5')
     .then((res) => res.json())
     .then(res => {
         CookieUtils.setCookie(`wotd`, res[0]);
@@ -223,35 +224,3 @@ const letters = [
 'Enter', 'x', 'c', 'v', 'b', 'n', 'm', 'Back'
 ]
 
-
-const definition = {
-    "word": "netty",
-    "phonetic": "/ˈnɛti/",
-    "phonetics": [
-        {
-            "text": "/ˈnɛti/",
-            "audio": ""
-        }
-    ],
-    "meanings": [
-        {
-            "partOfSpeech": "adjective",
-            "definitions": [
-                {
-                    "definition": "Neat, well-groomed, natty.",
-                    "synonyms": [],
-                    "antonyms": []
-                }
-            ],
-            "synonyms": [],
-            "antonyms": []
-        }
-    ],
-    "license": {
-        "name": "CC BY-SA 3.0",
-        "url": "https://creativecommons.org/licenses/by-sa/3.0"
-    },
-    "sourceUrls": [
-        "https://en.wiktionary.org/wiki/netty"
-    ]
-}
