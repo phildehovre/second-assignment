@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setNewWord()
     let attempts = [];
     let typed = '';
+    var gameOver = false
     const rows = document.querySelectorAll('.grid_row');
     const currentRow = rows[attempts.length];
     let cells = currentRow.querySelectorAll('.cell'); 
@@ -48,6 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
      * */ 
     
     function registerInput(key) {
+        if (gameOver) return;
+
         if (key == "Back" || key == 'Backspace') {
             typed = typed.slice(0, typed.length-1)
             cells[typed.length].textContent = ''
@@ -86,15 +89,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     // At Initialization, each key in the virtual keyboard
                     // is assigned its own value as an ID, which allows for
                     // selection and class assignment below:
-                    const k = document.querySelector(`#${l}`)
+                    // "vk" stands for" virtual key".
+                    const vk = document.querySelector(`#${l}`)
                     if (!wotd.includes(l)) {
-                        k.classList.add('incorrect')
-                    }
-                    if (wotd.includes(l) && wotd.indexOf(l) != i) {
-                        k.classList.add('existing')
-                    }
-                    if (wotd.indexOf(l) == i ) {
-                        k.classList.add('correct')
+                        vk.classList.add('incorrect')
+                    } else {
+                        if (wotd.indexOf(l) == i ) {
+                            vk.classList.remove('existing')
+                            vk.classList.add('correct')
+                        }
+                        else  {
+                            vk.classList.add('existing')
+                        }
                     }
                 }
                 )
@@ -148,22 +154,33 @@ function checkWord(wotd, typed, attempts) {
      */
     let correct = []
     let existing = []
+
     if (!wotd) return [[], []];
+
     const attempt = typed.split('')
     const comparator = wotd.split('')
 
+    /**
+     * Builds a hash to account for letters 
+     * that appear multiple times, each time an existing
+     * letter appear, it will subtract 1 from that letter count.
+     */
     const hash = wotd.split('').reduce((acc, letter) => {
         acc[letter]? acc[letter] += 1 : acc[letter] = 1
         return acc
     }, {})
 
-    
+    /**
+     * Contains comparison logic and dispatches not the letter,
+     * but its index to the correct/existing arrays.
+     */
     for (let i = 0; i < attempt.length ; i++) {
         if (attempt[i] === comparator[i]) {
             hash[attempt[i]] -= 1
             correct.push(i)
         }
-        if (comparator.includes(attempt[i]) && hash[attempt[i]] != 0) {
+        else if (comparator.includes(attempt[i]) && hash[attempt[i]] != 0) {
+            hash[attempt[i]] -= 1
             existing.push(i)
         }
     }   

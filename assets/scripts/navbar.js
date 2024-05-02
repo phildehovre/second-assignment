@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="bar center"></div>
                 <div class="bar bottom"></div>
                 <ul class="hamburger_content">
-                    <li style="--order: 1" class="cta">
-                        <a href="today.html">
-                        Start your journey</a><i class="fas fa-arrow-right"></i></li>
+                    <li style="--order: 1">
+                        <a href="phwirdle.html">
+                        Play</a><i class="fas fa-arrow-right"></i>
                     </a></li>
                     <li style="--order: 2"><a href="/">Home</a></li>
                     <li style="--order: 3"><a href="">Features</a></li>
@@ -37,9 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
 const navButtons = [
     {name: "Home", link: "/"},
     {name: "About", link: "about.html"},
-    {name: "Play", link: "phwirdle.html"},
     {name: "Contact", link: "contact.html"},
-    // {name: "Start your journey", link: "today.html"},
+    {name: "Play", link: "phwirdle.html"},
 
 ]
 
