@@ -45,9 +45,21 @@
 
 #status {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     margin: 0 auto;
     align-items: center;
+}
+
+.reset {
+    transition: 250ms all cubic-bezier(.5,.67,.32,1.53);
+    margin-left: 25px;
+    
+}
+
+.reset:hover {
+    color: var(--primary);
+    cursor: pointer;
+    transform: rotate(180deg)
 }
 
 #keyboard {

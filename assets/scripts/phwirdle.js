@@ -3,7 +3,7 @@
  * I am taking advantage of hoisting
  * for clarity of code.
  * The function names chould be self explanatory
- */
+*/
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,32 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const rows = document.querySelectorAll('.grid_row');
     const currentRow = rows[attempts.length];
     let cells = currentRow.querySelectorAll('.cell'); 
-    let wotd = CookieUtils.getCookie('wotd')
+    var wotd = CookieUtils.getCookie('wotd')
+    fetchDefinition(wotd)
 
-    const button = document.querySelector('#new')
-    button.addEventListener('click', () => {
-        window.refresh
-    })
-
-    
-    // =========== Initialize WOTD =============
-    /* 
-    Check if cookies contains a word of the day 
-    If they dont, set an interval that will repeatedly
-    SET/GET and check for existence and check that the browser
-    agrees on the word both in cookies and stored locally.
-    Finally, cancelling the interval on a positive check.
-    */
    
-   const wotdInterval = setInterval(() => {
-       let currentWord = CookieUtils.getCookie('wotd')
-       if (wotd == currentWord && currentWord.length !== 0) {
-           setNewWord()
-           wotd = currentWord
-           return clearInterval(wotdInterval)
-        } 
-    }, 1000)
-    
     // ============ Input registration + Visual feedback ==============
     /** 
      * This function processes inputs both from
@@ -132,14 +110,25 @@ document.addEventListener('DOMContentLoaded', () => {
         let key = e.key;
         registerInput(key);
     });
+
+    // =========== Reset Function =============
+    const resetButton = document.querySelector('#new')
+    resetButton.addEventListener('click', () => resetGame())
 });
+
+function resetGame() {
+  location.reload()
+}
 
     // =========== Helper functions =============
 
 function setNewWord() {
     fetch('https://random-word-api.herokuapp.com/word?length=5')
     .then((res) => res.json())
-    .then(res => CookieUtils.setCookie(`wotd`, res[0]))
+    .then(res => {
+        CookieUtils.setCookie(`wotd`, res[0]);
+        
+    })
 }
 
 function getNewWord() {
@@ -147,6 +136,7 @@ function getNewWord() {
 }
 
 function checkWord(wotd, typed, attempts) {
+    let definitions = []
     /**
      * This function will return two arrays of
      * indices which can then be used to select
@@ -185,12 +175,46 @@ function checkWord(wotd, typed, attempts) {
         }
     }   
 
+
+
     if (correct.length == 5 || attempts.length == 4) {
         gameOver=true
         document.querySelector('#wotd').textContent = `The word was: ${wotd}`
+
+
+        CookieUtils.getCookie('definition').split(';').forEach((definition, i) => {
+            console.log("definition", definition)
+            let defCtn = document.createElement('small')
+            let def = document.createElement('p')
+
+            def.classList.add('definition')
+            defCtn.classList.add('def_ctn')
+
+            def.textContent = definition
+
+            defCtn.appendChild(def)
+            document.querySelector('#definition').appendChild(defCtn)
+        })
     }
 
     return [correct, existing]
+}
+
+function fetchDefinition(word) {
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+    .then((res) => res.json())
+    .then(data => {
+        const definition = stringifyDefinitions(data[0].meanings[0].definitions);
+        CookieUtils.setCookie('definition', definition)
+    })
+}
+
+function stringifyDefinitions(array) {
+    let acc = []
+    for (let i = 0; i < 3; i++) {
+       array[i]? acc.push(array[i].definition) : null
+    }
+    return acc.join(';')
 }
 
 const letters = [
@@ -198,3 +222,36 @@ const letters = [
 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 
 'Enter', 'x', 'c', 'v', 'b', 'n', 'm', 'Back'
 ]
+
+
+const definition = {
+    "word": "netty",
+    "phonetic": "/ˈnɛti/",
+    "phonetics": [
+        {
+            "text": "/ˈnɛti/",
+            "audio": ""
+        }
+    ],
+    "meanings": [
+        {
+            "partOfSpeech": "adjective",
+            "definitions": [
+                {
+                    "definition": "Neat, well-groomed, natty.",
+                    "synonyms": [],
+                    "antonyms": []
+                }
+            ],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ],
+    "license": {
+        "name": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0"
+    },
+    "sourceUrls": [
+        "https://en.wiktionary.org/wiki/netty"
+    ]
+}
