@@ -10,6 +10,12 @@ This project is a word guessing game where the player tries to guess a randomly 
 - **Visual Feedback**: Correctly guessed letters are highlighted with the "correct" class, and existing but incorrectly placed letters are highlighted with the "existing" class.
 - **Game Over**: The game ends when the correct word is guessed or when the maximum number of attempts is reached.
 
+## Drawbacks
+
+Unfortunately, I was unable to implement a spellchecking system, there are free dictionnary API available, but the implementation would require more state management than vanilla javascript allows.
+For the time being, users are indeed able to input gibberish as a word guess, but since it defeats the point of the game and is detrimental to the enjoyment, 
+I think the incentives are in favour of playing the game in earnest.
+
 ## Getting Started
 ### Prerequisites
 
