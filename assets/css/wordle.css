@@ -17,7 +17,7 @@
             border-radius: 5px;
             width: 75px;
             font-weight: bold;
-            font-size: larger;
+            font-size: 1.8rem;
             text-transform: uppercase;
             display: flex;
             justify-content: center;
@@ -41,6 +41,13 @@
             }
         }
     }
+}
+
+#status {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
 }
 
 #keyboard {
@@ -91,7 +98,8 @@
         }
         &.incorrect {
             color: var(--primary-light);
-            box-shadow: 3px 3px 4px var(--grey) inset;
+            color: grey;
+            box-shadow: 3px 3px 4px grey inset;
         }
     }
 }

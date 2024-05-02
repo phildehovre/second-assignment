@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             typed = typed.slice(0, typed.length-1)
             cells[typed.length].textContent = ''
             // Only allow Alphabetical characters to be appended to "typed"
-        } else if (96 < key.charCodeAt(0) && key.charCodeAt(0) < 122 ) {
+        } else if (96 < key.charCodeAt(0) && key.charCodeAt(0) < 123 ) {
             if (typed.length < 5) {
                 typed += key
                 cells[typed.length - 1].textContent = key
@@ -71,7 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const currentRow = rows[attempts.length]
                 cells = currentRow.querySelectorAll('.cell')
             }
-            console.log(wotd)
+
+            // Assigning classes to virtual keyboard keys
+            // based on correct/existing/incorrect status.
             for (let i = 0; i < attempts.length; i++) {
                 attempts[i].split('').forEach( (l, i) => {
                     const k = document.querySelector(`#${l}`)
@@ -164,6 +166,8 @@ function checkWord(wotd, typed, attempts) {
     return [correct, existing]
 }
 
-
-
-const letters = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'Enter', 'x', 'c', 'v', 'b', 'n', 'm', 'Back']
+const letters = [
+    'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 
+'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 
+'Enter', 'x', 'c', 'v', 'b', 'n', 'm', 'Back'
+]
