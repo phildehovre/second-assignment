@@ -7,6 +7,7 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    setNewWord()
     let attempts = [];
     let typed = '';
     let gameOver = false
@@ -47,10 +48,21 @@ document.addEventListener('DOMContentLoaded', () => {
         key.textContent = letter
 
         key.addEventListener('click', () => {
-        if (key.textContent == "Enter" && typed.length == 5) {
-                const [correct, existing ] = checkWord(wotd, typed, gameOver)
-
-                // assigning classes tobaron correct/existing letters.
+            pressedKey = key.textContent
+            if (pressedKey == "Back") {
+                typed = typed.slice(0, typed.length-1)
+                cells[typed.length].textContent = ''
+                // Only allow Alphabetical characters to be appended to "typed"
+            } else if (96 < pressedKey.charCodeAt(0) && pressedKey.charCodeAt(0) < 122 ) {
+                if (typed.length < 5) {
+                    typed += pressedKey
+                    cells[typed.length - 1].textContent = pressedKey
+                }
+            } else if (pressedKey == "Enter" && typed.length == 5) {
+                console.log('enter')
+                const [correct, existing] = checkWord(wotd, typed, gameOver)
+                
+                // assigning classes to correct/existing letters.
                 correct.forEach((index) => {
                     cells[index].classList.add('correct')
                 })
@@ -59,14 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 attempts.push(typed)
                 typed = ''
+                cells.forEach((cell, index) => {
+                    cell.style = `--delay: ${index}`
+                    cell.classList.add('checked')
+                })
+                // updateKeyboard(attemps)
                 const currentRow = rows[attempts.length]
                 cells = currentRow.querySelectorAll('.cell')
-            } else if (key.textContent == "Back") {
-                typed = typed.slice(0, typed.length -1)
-                cells[typed.length].textContent = ''
-            } else {
-                    typed += letter
-                    cells[typed.length - 1].textContent = letter
             }
         })
         keyboard.appendChild(key)
@@ -85,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
             cells[typed.length - 1].textContent = e.key
         }
     } else if (e.key == "Enter" && typed.length == 5) {
-        const [correct, existing, checked] = checkWord(wotd, typed, gameOver)
+        console.log('enter')
+        const [correct, existing] = checkWord(wotd, typed, gameOver)
         
         // assigning classes to correct/existing letters.
         correct.forEach((index) => {
@@ -127,8 +139,7 @@ function checkWord(wotd, typed) {
      */
     let correct = []
     let existing = []
-    let checked
-    if (!wotd) return;
+    if (!wotd) return [[], []];
     const attempt = typed.split('')
     const comparator = wotd.split('')
 
@@ -152,13 +163,9 @@ function checkWord(wotd, typed) {
     if (correct.length == 5) {
         gameOver=true
     }
-
-    return [correct, existing, checked]
+    return [correct, existing]
 }
 
-function updateKeyboard(array) {
-    // TODO
-    let keys = document.querySelectorAll('.keys')
-}
+
 
 const letters = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'Enter', 'x', 'c', 'v', 'b', 'n', 'm', 'Back']
