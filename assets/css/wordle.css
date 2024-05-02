@@ -79,7 +79,19 @@
         
         &:active {
             box-shadow: 3px 3px 4px var(--primary) inset;
-
+            
+        }
+        
+        &.correct {
+            background-color: var(--primary);
+            color: white;
+        }
+        &.existing {
+            background-color: var(--primary-light);
+        }
+        &.incorrect {
+            color: var(--primary-light);
+            box-shadow: 3px 3px 4px var(--grey) inset;
         }
     }
 }

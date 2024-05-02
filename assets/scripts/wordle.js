@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1000)
     
     
-    function wordCheck(key) {
+    function registerInput(key) {
         if (key == "Back" || key == 'Backspace') {
             typed = typed.slice(0, typed.length-1)
             cells[typed.length].textContent = ''
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cells[typed.length - 1].textContent = key
             }
         } else if (key == "Enter" && typed.length == 5) {
-            const [correct, existing] = checkWord(wotd, typed, attempts)
+            var [correct, existing] = checkWord(wotd, typed, attempts)
             
             // assigning classes to correct/existing letters.
             correct.forEach((index) => {
@@ -71,7 +71,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const currentRow = rows[attempts.length]
                 cells = currentRow.querySelectorAll('.cell')
             }
+            console.log(wotd)
+            for (let i = 0; i < attempts.length; i++) {
+                attempts[i].split('').forEach( (l, i) => {
+                    const k = document.querySelector(`#${l}`)
+                    if (!wotd.includes(l)) {
+                        k.classList.add('incorrect')
+                    }
+                    if (wotd.includes(l) && wotd.indexOf(l) != i) {
+                        k.classList.add('existing')
+                    }
+                    if (wotd.indexOf(l) == i ) {
+                        k.classList.add('correct')
+                    }
+                }
+                )
+
+            }
         }
+        
     }
 
     // =========== Init virtual Keyboard =============
@@ -79,11 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
     letters.forEach(letter => {
         let key = document.createElement('div');
         key.classList.add('key');
+        key.id = letter
         key.textContent = letter;
 
         key.addEventListener('click', () => {
             pressedKey = key.textContent;
-            wordCheck(pressedKey);
+            registerInput(pressedKey);
 
         });
         keyboard.appendChild(key);
@@ -93,13 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
     // Allow for backspace functionality       
         let key = e.key;
-        wordCheck(key);
-});
+        registerInput(key);
+    });
 });
 
-// =========== Endgame logic ================
-
-// =========== Helper functions =============
+    // =========== Helper functions =============
 
 function setNewWord() {
     fetch('https://random-word-api.herokuapp.com/word?length=5')
