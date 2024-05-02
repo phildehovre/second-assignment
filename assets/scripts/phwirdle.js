@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
 //    BUG: When a  letter appears and the first instance is "existing"
 //    not correct, it will appear
 
+//    BUG: gameOver does not work
+
     // ============ Input registration + Visual feedback ==============
     /** 
      * This function processes inputs both from
@@ -38,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pressed.classList.toggle('active')
             setTimeout(() => {
                 pressed.classList.toggle('active')
-            }, 250)
+            }, 150)
         }
    
         if (gameOver) return;
