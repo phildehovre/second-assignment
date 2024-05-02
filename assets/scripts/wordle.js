@@ -30,94 +30,74 @@ document.addEventListener('DOMContentLoaded', () => {
     Finally, cancelling the interval on a positive check.
     */
    
-    const wotdInterval = setInterval(() => {
-        let currentWord = CookieUtils.getCookie('wotd')
-        if (wotd == currentWord && currentWord.length !== 0) {
-            setNewWord()
-            wotd = currentWord
-            return clearInterval(wotdInterval)
+   const wotdInterval = setInterval(() => {
+       let currentWord = CookieUtils.getCookie('wotd')
+       if (wotd == currentWord && currentWord.length !== 0) {
+           setNewWord()
+           wotd = currentWord
+           return clearInterval(wotdInterval)
         } 
     }, 1000)
     
-
-    // =========== Initialize Keyboard =============
-    let keyboard = document.querySelector('#keyboard')
-    letters.forEach(letter => {
-        let key = document.createElement('div')
-        key.classList.add('key')
-        key.textContent = letter
-
-        key.addEventListener('click', () => {
-            pressedKey = key.textContent
-            if (pressedKey == "Back") {
-                typed = typed.slice(0, typed.length-1)
-                cells[typed.length].textContent = ''
-                // Only allow Alphabetical characters to be appended to "typed"
-            } else if (96 < pressedKey.charCodeAt(0) && pressedKey.charCodeAt(0) < 122 ) {
-                if (typed.length < 5) {
-                    typed += pressedKey
-                    cells[typed.length - 1].textContent = pressedKey
-                }
-            } else if (pressedKey == "Enter" && typed.length == 5) {
-                console.log('enter')
-                const [correct, existing] = checkWord(wotd, typed, gameOver)
-                
-                // assigning classes to correct/existing letters.
-                correct.forEach((index) => {
-                    cells[index].classList.add('correct')
-                })
-                existing.forEach((index) => {
-                    cells[index].classList.add('existing')
-                })
-                attempts.push(typed)
-                typed = ''
-                cells.forEach((cell, index) => {
-                    cell.style = `--delay: ${index}`
-                    cell.classList.add('checked')
-                })
-                // updateKeyboard(attemps)
+    
+    function wordCheck(key) {
+        if (key == "Back" || key == 'Backspace') {
+            typed = typed.slice(0, typed.length-1)
+            cells[typed.length].textContent = ''
+            // Only allow Alphabetical characters to be appended to "typed"
+        } else if (96 < key.charCodeAt(0) && key.charCodeAt(0) < 122 ) {
+            if (typed.length < 5) {
+                typed += key
+                cells[typed.length - 1].textContent = key
+            }
+        } else if (key == "Enter" && typed.length == 5) {
+            const [correct, existing] = checkWord(wotd, typed, attempts)
+            
+            // assigning classes to correct/existing letters.
+            correct.forEach((index) => {
+                cells[index].classList.add('correct')
+            })
+            existing.forEach((index) => {
+                cells[index].classList.add('existing')
+            })
+            attempts.push(typed)
+            typed = ''
+            cells.forEach((cell, index) => {
+                cell.style = `--delay: ${index}`
+                cell.classList.add('checked')
+            })
+            // updateKeyboard(attemps)
+            if (attempts.length < 5) {
                 const currentRow = rows[attempts.length]
                 cells = currentRow.querySelectorAll('.cell')
             }
-        })
-        keyboard.appendChild(key)
-    })
+        }
+    }
+
+    // =========== Init virtual Keyboard =============
+    let keyboard = document.querySelector('#keyboard');
+    letters.forEach(letter => {
+        let key = document.createElement('div');
+        key.classList.add('key');
+        key.textContent = letter;
+
+        key.addEventListener('click', () => {
+            pressedKey = key.textContent;
+            wordCheck(pressedKey);
+
+        });
+        keyboard.appendChild(key);
+     });
 
     // =========== Registering keystrokes =============
     document.addEventListener('keydown', (e) => {
     // Allow for backspace functionality       
-    if (e.key == "Backspace") {
-        typed = typed.slice(0, typed.length-1)
-        cells[typed.length].textContent = ''
-        // Only allow Alphabetical characters to be appended to "typed"
-    } else if (96 < e.key.charCodeAt(0) && e.key.charCodeAt(0) < 122 ) {
-        if (typed.length < 5) {
-            typed += e.key
-            cells[typed.length - 1].textContent = e.key
-        }
-    } else if (e.key == "Enter" && typed.length == 5) {
-        console.log('enter')
-        const [correct, existing] = checkWord(wotd, typed, gameOver)
-        
-        // assigning classes to correct/existing letters.
-        correct.forEach((index) => {
-            cells[index].classList.add('correct')
-        })
-        existing.forEach((index) => {
-            cells[index].classList.add('existing')
-        })
-        attempts.push(typed)
-        typed = ''
-        cells.forEach((cell, index) => {
-            cell.style = `--delay: ${index}`
-            cell.classList.add('checked')
-        })
-        // updateKeyboard(attemps)
-        const currentRow = rows[attempts.length]
-        cells = currentRow.querySelectorAll('.cell')
-    }
+        let key = e.key;
+        wordCheck(key);
 });
 });
+
+// =========== Endgame logic ================
 
 // =========== Helper functions =============
 
@@ -131,7 +111,7 @@ function getNewWord() {
     return CookieUtils.getCookie('wotd')
 }
 
-function checkWord(wotd, typed) {
+function checkWord(wotd, typed, attempts) {
     /**
      * This function will return two arrays of
      * indices which can then be used to select
@@ -142,7 +122,6 @@ function checkWord(wotd, typed) {
     if (!wotd) return [[], []];
     const attempt = typed.split('')
     const comparator = wotd.split('')
-
 
     const hash = wotd.split('').reduce((acc, letter) => {
         acc[letter]? acc[letter] += 1 : acc[letter] = 1
@@ -160,9 +139,11 @@ function checkWord(wotd, typed) {
         }
     }   
 
-    if (correct.length == 5) {
+    if (correct.length == 5 || attempts.length == 4) {
         gameOver=true
+        document.querySelector('#wotd').textContent = `The word was: ${wotd}`
     }
+
     return [correct, existing]
 }
 
