@@ -3,44 +3,44 @@
     flex-direction: column;
     gap: .5rem;
     align-items: center;
+}
 
-    .grid_row {
-        display: flex;
-        list-style: none;
-        gap: .25rem;
-        margin: 0;
-        padding: 0;
+ .grid_row {
+    display: flex;
+    list-style: none;
+    gap: .25rem;
+    margin: 0;
+    padding: 0;
+}
 
-        .cell {
-            border: 1px solid grey;
-            height: 75px;
-            border-radius: 5px;
-            width: 75px;
-            font-weight: bold;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: 250ms ease-in-out all;
+.grid_row > .cell {
+    border: 1px solid grey;
+    height: 75px;
+    border-radius: 5px;
+    width: 75px;
+    font-weight: bold;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 250ms ease-in-out all;
+}
             
-            &.existing {
-                background-color: var(--primary-light);
-                color: var(--primary);
-            }
+.grid_row > .cell.existing {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
             
-            &.correct {
-                background-color: var(--primary);
-                color: var(--white);
+.grid_row  > .cell.correct {
+    background-color: var(--primary);
+    color: var(--white);
 
-            }
+}
 
-            &.checked {
-                animation: scaleY 250ms ease-in-out;
-                animation-delay: calc(var(--delay) * 100ms);
-            }
-        }
-    }
+.grid_row > .cell.checked {
+    animation: scaleY 250ms ease-in-out;
+    animation-delay: calc(var(--delay) * 100ms);
 }
 
 #status {
@@ -69,51 +69,57 @@
     width: 575px;
     justify-content: center;
     margin: 0 auto;
+}
 
-    .key {
-        height: 50px;
-        min-width: 40px;
-        padding: 0 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 6px;
-        border: 1px solid var(--primary);
-        font-weight: bold;
-        font-size: larger;
-        text-transform: uppercase;
-        transition: 150ms all ease-in-out;
-        cursor: pointer;
+ .key {
+    height: 50px;
+    min-width: 40px;
+    padding: 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    border: 1px solid var(--primary);
+    font-weight: bold;
+    font-size: larger;
+    text-transform: uppercase;
+    transition: 150ms all ease-in-out;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px var(--primary);
+}
 
-        &.enter {
+ .key.enter {
             width: 100px
         }
-        &.backslash {
+ .key.backslash {
             width: 100px
         }
 
-        &:hover{
+ .key:hover{
             box-shadow: 2px 2px 2px var(--primary) inset;
         }
         
-        &:active {
+ .key:active {
             box-shadow: 3px 3px 4px var(--primary) inset;
             
         }
+ .key.active {
+            box-shadow: 3px 3px 4px var(--primary) inset;
+        }
         
-        &.correct {
-            background-color: var(--primary);
-            color: white;
-        }
-        &.existing {
-            background-color: var(--primary-light);
-        }
-        &.incorrect {
-            color: var(--primary-light);
-            color: grey;
-            box-shadow: 3px 3px 4px grey inset;
-        }
+ .key.correct {
+     background-color: var(--primary);
+     color: white;
     }
+    .key.existing {
+        background-color: var(--primary-light);
+        color: var(--primary);
+}
+    .key.incorrect {
+    color: var(--primary-light);
+    color: rgb(209, 209, 209);
+    box-shadow: 3px 3px 4px rgb(211, 211, 211) inset;
+    border: 1px solid rgb(211,211,211);
 }
 
 @keyframes scaleY {

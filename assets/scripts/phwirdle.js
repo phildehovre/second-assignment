@@ -16,8 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let cells = currentRow.querySelectorAll('.cell'); 
     var wotd = CookieUtils.getCookie('wotd')
     fetchDefinition(wotd)
+    
 
-   
+//    BUG: When a  letter appears and the first instance is "existing"
+//    not correct, it will appear
+
     // ============ Input registration + Visual feedback ==============
     /** 
      * This function processes inputs both from
@@ -27,6 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
      * */ 
     
     function registerInput(key) {
+        // Keypress animation, for some reason, 
+        // blocks the backspace doing its job,
+        // hence the 'if' statement;
+        if (key !== 'Backspace') {
+            let pressed = document.querySelector(`#${key}`)
+            pressed.classList.toggle('active')
+            setTimeout(() => {
+                pressed.classList.toggle('active')
+            }, 250)
+        }
+   
         if (gameOver) return;
 
         if (key == "Back" || key == 'Backspace') {
@@ -66,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 attempts[i].split('').forEach( (l, i) => {
                     // At Initialization, each key in the virtual keyboard
                     // is assigned its own value as an ID, which allows for
-                    // selection and class assignment below:
+                    // selection and class assignment further down below.
                     // "vk" stands for" virtual key".
                     const vk = document.querySelector(`#${l}`)
                     if (!wotd.includes(l)) {
@@ -88,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }
 
-    // =========== Init virtual Keyboard =============
+    // =========== Initialising/Registering virtual Keyboard ======
     let keyboard = document.querySelector('#keyboard');
     letters.forEach(letter => {
         let key = document.createElement('div');
@@ -122,8 +136,10 @@ function resetGame() {
 
     // =========== Helper functions =============
 
+    /**
+     * Function sources a random word.
+     */
 function setNewWord() {
-    // fetch('https://random-word-api.herokuapp.com/word?length=5')
     fetch('https://random-word-api.vercel.app/api?words=1&length=5')
     .then((res) => res.json())
     .then(res => {
@@ -176,10 +192,8 @@ function checkWord(wotd, typed, attempts) {
         }
     }   
 
-
-
     if (correct.length == 5 || attempts.length == 4) {
-        gameOver=true
+        gameOver = true
         document.querySelector('#wotd').textContent = `The word was: ${wotd}`
 
 
