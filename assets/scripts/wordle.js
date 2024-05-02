@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setNewWord()
     let attempts = [];
     let typed = '';
-    let gameOver = false
     const rows = document.querySelectorAll('.grid_row');
     const currentRow = rows[attempts.length];
     let cells = currentRow.querySelectorAll('.cell'); 
@@ -26,7 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     /* 
     Check if cookies contains a word of the day 
     If they dont, set an interval that will repeatedly
-    SET/GET and check for existence.
+    SET/GET and check for existence and check that the browser
+    agrees on the word both in cookies and stored locally.
     Finally, cancelling the interval on a positive check.
     */
    
@@ -39,6 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
     }, 1000)
     
+    // ============ Input registration + Visual feedback ==============
+    /** 
+     * This function processes inputs both from
+     * the user's physical keyboard and the virtual one
+     * by taking in the agnostic "key" parameter that is
+     * just the string value of the key, rather than an event.
+     * */ 
     
     function registerInput(key) {
         if (key == "Back" || key == 'Backspace') {
@@ -76,6 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // based on correct/existing/incorrect status.
             for (let i = 0; i < attempts.length; i++) {
                 attempts[i].split('').forEach( (l, i) => {
+                    // At Initialization, each key in the virtual keyboard
+                    // is assigned its own value as an ID, which allows for
+                    // selection and class assignment below:
                     const k = document.querySelector(`#${l}`)
                     if (!wotd.includes(l)) {
                         k.classList.add('incorrect')
