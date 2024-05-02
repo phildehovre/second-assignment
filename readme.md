@@ -11,7 +11,6 @@ This project is a word guessing game where the player tries to guess a randomly 
 - **Game Over**: The game ends when the correct word is guessed or when the maximum number of attempts is reached.
 
 ## Getting Started
-
 ### Prerequisites
 
 - Modern web browser
@@ -19,7 +18,33 @@ This project is a word guessing game where the player tries to guess a randomly 
 
 ### Installation
 
-1. Clone the repository:
+Clone the repository:
 
 ```bash
 git clone https://github.com/your-username/word-guessing-game.git
+```
+Open the `index.html` file in your web browser.
+
+## Usage
+Upon loading the game, a word of the day (WOTD) is generated and displayed at the top of the screen.
+Use the virtual keyboard or your physical keyboard to input guesses.
+Clicking on a letter key or typing on your physical keyboard will add that letter to the current guess.
+Press "Enter" to submit your guess.
+Correctly guessed letters will be highlighted with the "correct" class, and existing but misplaced letters will be highlighted with the "existing" class.
+The game ends when the correct word is guessed or when the maximum number of attempts is reached.
+
+## Contributing
+Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+
+Fork the repository.
+- Create your feature branch (git checkout -b feature/YourFeature).
+- Commit your changes (git commit -am 'Add some feature').
+- Push to the branch (git push origin feature/YourFeature).
+- Create a new Pull Request.
+- 
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgements
+Special thanks to Random Word API for providing the word generation functionality.
