@@ -1,32 +1,45 @@
 /**
- * The functions are at the bottom,
- * I am taking advantage of hoisting
- * for clarity of code.
- * The function names chould be self explanatory
-*/
+ * The code structure breaks down as follows:
+ * 
+ * 0. Mystery word fetched through an API call and stored in cookies.
+ * 
+ * 1. on DOMContentLoaded, initialise virtual keyboard,
+ * grid and two main event listeners on pysical and virtual keyboard;
+ * 
+ * 2. The event listeners pick up on user interaction, 
+ * through the physical or virtual keyboard.
+ * 
+ * 3. On user every user input, the function "registerInput" 
+ * processes the various checks and styles.
+ * 
+ * 4. If the user presses "Enter",
+ * the "registerInput" function calls the "checkWord" function.
+ * checkWord will send the word to a dictionary API.
+ * On a positive response, we move to the next row and
+ * assign styles to virtual keys and letter cells.
+ * 
+ * 5. The game ends with a simple check on the
+ * number of attemps, or a positive match between user input
+ * and mystery word.
+ */
 
+var attempts = [];
+var typed = '';
+var gameOver = false
+setNewWord()
+var wotd = CookieUtils.getCookie('wotd')
+fetchDefinition(wotd)
 
 document.addEventListener('DOMContentLoaded', () => {
-    setNewWord()
-    let attempts = [];
-    let typed = '';
-    var gameOver = false
     const rows = document.querySelectorAll('.grid_row');
     const currentRow = rows[attempts.length];
     let cells = currentRow.querySelectorAll('.cell'); 
-    var wotd = CookieUtils.getCookie('wotd')
-    fetchDefinition(wotd)
     
     if (!wotd) {
         location.reload
         setNewWord()
     }
-
-//    BUG: When a  letter appears and the first instance is "existing"
-//    not correct, it will appear
-
-//    BUG: gameOver does not work
-
+    
     // ============ Input registration + Visual feedback ==============
     /** 
      * This function processes inputs both from
@@ -37,9 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function registerInput(key) {
         if (gameOver) return;
-        // Keypress animation, for some reason, 
-        // blocks the backspace doing its job,
-        // hence the 'if' statement;
+
         if (key !== 'Backspace') {
             let pressed = document.querySelector(`#${key}`)
             pressed.classList.toggle('active')
@@ -49,8 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
             0)
         }
         
-
-
         if (key == "Back" || key == 'Backspace') {
             typed = typed.slice(0, typed.length-1)
             cells[typed.length].textContent = ''
@@ -85,43 +94,41 @@ document.addEventListener('DOMContentLoaded', () => {
                         cell.classList.add('checked')
                     });
                               // updateKeyboard(attemps)
-            if (attempts.length < 5) {
-                const currentRow = rows[attempts.length]
-                cells = currentRow.querySelectorAll('.cell')
-            }
-            
-            // Assigning classes to virtual keyboard keys
-            // based on correct/existing/incorrect status.
-            for (let i = 0; i < attempts.length; i++) {
-                attempts[i].split('').forEach( (l, i) => {
-                    // At Initialization, each key in the virtual keyboard
-                    // is assigned its own value as an ID, which allows for
-                    // selection and class assignment further down below.
-                    // "vk" stands for" virtual key".
-                    const vk = document.querySelector(`#${l}`)
-                    if (!wotd.includes(l)) {
-                        vk.classList.add('incorrect')
-                    } else {
-                        if (wotd.indexOf(l) == i ) {
-                            vk.classList.remove('existing')
-                            vk.classList.add('correct')
-                        }
-                        else  {
-                            vk.classList.add('existing')
-                        }
+                    if (attempts.length < 5) {
+                        const currentRow = rows[attempts.length]
+                        cells = currentRow.querySelectorAll('.cell')
                     }
+                
+                    // Assigning classes to virtual keyboard keys
+                    // based on correct/existing/incorrect status.
+                    for (let i = 0; i < attempts.length; i++) {
+                        attempts[i].split('').forEach( (l, i) => {
+                            // At Initialization, each key in the virtual keyboard
+                            // is assigned its own value as an ID, which allows for
+                            // selection and class assignment further down below.
+                            // "vk" stands for" virtual key".
+                            const vk = document.querySelector(`#${l}`)
+                            if (!wotd.includes(l)) {
+                                vk.classList.add('incorrect')
+                            } else {
+                                if (wotd.indexOf(l) == i ) {
+                                    vk.classList.remove('existing')
+                                    vk.classList.add('correct')
+                                }
+                                else  {
+                                    vk.classList.add('existing')
+                                }
+                            }
+                        }
+                    )
                 }
-            )
-        }
                 }
-            })
-            
+        });           
 
             // ===============Spellcheck ===================
             async function spellCheck(word) {
                 return fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
                     .then(res => {
-
                         if (res.status === 200) {
                             return true;
                         } else {
@@ -133,14 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         return;
                     });
             }
-            // ===============Spellcheck ===================
-     
-
-
-  
         gameOver = attempts.length == 5 || typed == wotd ? true:false
     }
-        
 }
 
     // =========== Initialising/Registering virtual Keyboard ======
@@ -171,27 +172,28 @@ document.addEventListener('DOMContentLoaded', () => {
     resetButton.addEventListener('click', () => resetGame())
 });
 
-function resetGame() {
-  location.reload()
-}
 
-    // =========== Helper functions =============
+// =========== Helper functions =============
 
-    /**
-     * Function sources a random word.
-     */
+/**
+ * Function sources a random word.
+*/
 function setNewWord() {
     fetch('https://random-word-api.vercel.app/api?words=1&length=5')
     .then((res) => res.json())
     .then(res => {
         CookieUtils.setCookie(`wotd`, res[0]);
         
-    })
-}
+    });
+};
+
+function resetGame() {
+  location.reload();
+};
 
 function getNewWord() {
-    return CookieUtils.getCookie('wotd')
-}
+    return CookieUtils.getCookie('wotd');
+};
 
 function checkWord(wotd, typed, attempts) {
     /**
@@ -200,13 +202,13 @@ function checkWord(wotd, typed, attempts) {
      * the cells that need updating.
      */
 
-    let correct = []
-    let existing = []
+    let correct = [];
+    let existing = [];
 
     if (!wotd) return [[], []];
 
-    const attempt = typed.split('')
-    const comparator = wotd.split('')
+    const attempt = typed.split('');
+    const comparator = wotd.split('');
 
     /**
      * Builds a hash to account for letters 
@@ -215,8 +217,8 @@ function checkWord(wotd, typed, attempts) {
      */
     const hash = wotd.split('').reduce((acc, letter) => {
         acc[letter]? acc[letter] + 1 : acc[letter] = 1
-        return acc
-    }, {})
+        return acc;
+    }, {});
 
     /**
      * Contains comparison logic and dispatches not the letter,
@@ -227,37 +229,37 @@ function checkWord(wotd, typed, attempts) {
         if (hash[attempt[i]] != 0) {
             // If not, is it at the right index
             if (attempt[i] === comparator[i]) {
-                hash[attempt[i]] -= 1
-                correct.push(i)
+                hash[attempt[i]] -= 1;
+                correct.push(i);
             }
             // If not, is it at least included
             else if (comparator.includes(attempt[i])) {
-                hash[attempt[i]] -= 1
-                existing.push(i)
+                hash[attempt[i]] -= 1;
+                existing.push(i);
             }
         }
     }   
 
     if (correct.length == 5 || attempts.length == 4) {
-        document.querySelector('#wotd').textContent = `The word was: ${wotd}`
+        document.querySelector('#wotd').textContent = `The word was: ${wotd}`;
 
 
         CookieUtils.getCookie('definition').split(';').forEach((definition, i) => {
-            console.log("definition", definition)
-            let defCtn = document.createElement('small')
-            let def = document.createElement('p')
+            console.log("definition", definition);
+            let defCtn = document.createElement('small');
+            let def = document.createElement('p');
 
-            def.classList.add('definition')
-            defCtn.classList.add('def_ctn')
+            def.classList.add('definition');
+            defCtn.classList.add('def_ctn');
 
-            def.textContent = definition
+            def.textContent = definition;
 
-            defCtn.appendChild(def)
-            document.querySelector('#definition').appendChild(defCtn)
+            defCtn.appendChild(def);
+            document.querySelector('#definition').appendChild(defCtn);
         })
     }
 
-    return [correct, existing]
+    return [correct, existing];
 }
 
 function fetchDefinition(word) {
@@ -265,18 +267,18 @@ function fetchDefinition(word) {
     .then((res) => res.json())
     .then(data => {
         const definition = stringifyDefinitions(data[0].meanings[0].definitions);
-        CookieUtils.setCookie('definition', definition)
-    })
-}
+        CookieUtils.setCookie('definition', definition);
+    });
+};
 
 
 
 function stringifyDefinitions(array) {
-    let acc = []
+    let acc = [];
     for (let i = 0; i < 3; i++) {
-       array[i]? acc.push(array[i].definition) : null
+       array[i]? acc.push(array[i].definition) : null;
     }
-    return acc.join(';')
+    return acc.join(';');
 }
 
 const letters = [
