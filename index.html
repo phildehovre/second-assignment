@@ -1,259 +1,83 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="Stability" content="Stability - Spot Break lead" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Stability - Spot Break lead" />
-    <meta name="keywords" content="HTML, CSS, JavaScript" />
-    <meta name="author" content="Philippe De Hovre" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link rel="stylesheet" href="./assets/css/hero.css" />
-    <link rel="stylesheet" href="./assets/css/hamburger.css" />
-    <link rel="stylesheet" href="./assets/css/features.css" />
-    <link rel="icon" type="image/x-icon" href="assets/pictures/favicon.svg" />
-    <script src="assets/scripts/navbar.js" defer></script>
-    <script src="assets/scripts/footer.js" defer></script>
-    <script src="assets/scripts/cookieHelpers.js" defer></script>
-    <script src="assets/scripts/script.js" defer></script>
-    <script src="assets/scripts/.js" defer></script>
+    <meta
+      title="Phwirdle"
+      content="Guess words with this great word guessing game"
+    />
+    <meta
+      name="description"
+      content="Guess words with this great word guessing game"
+    />
+    <meta name="keywords" content="HTML, CSS, JavaScript, word, word guessing" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/about.css" />
+    <link rel="stylesheet" href="../assets/css/phwirdle.css" />
+    <link rel="stylesheet" href="../assets/css/hamburger.css" />
+
+    <script src="/assets/scripts/navbar.js" defer></script>
+    <script src="/assets/scripts/cookieHelpers.js" defer></script>
+    <script src="/assets/scripts/phwirdle.js" defer></script>
+    <script src="/assets/scripts/footer.js" defer></script>
+    <script src="/assets/scripts/script.js" defer></script>
     <script
       src="https://kit.fontawesome.com/e8ab5a3bbe.js"
-      defer
       crossorigin="anonymous"
     ></script>
-    <title>Stability - Spot Break lead</title>
+    <title>Stability | About</title>
   </head>
   <body>
     <header class="nav_placeholder"></header>
     <main>
-      <div id="hero_ctn">
-        <div id="slogan_ctn">
-          <h1 id="heading">Stability</h1>
-          <h2 class="subheading">Spot,</h2>
-          <i class="fas fa-arrow-down"></i>
-          <h2 class="subheading">Break,</h2>
-          <i class="fas fa-arrow-down"></i>
-          <h2 class="subheading">Lead.</h2>
-          <a
-            href="/today.html"
-            class="btn cta btn-gradient mobile"
-            aria-roledescription="Try the product"
-            >Start your journey
-            <i class="fas fa-arrow-right shift"></i>
-          </a>
+      <section class="about_ctn">
+        <div id="status">
+          <h1>PHWIRDLE</h1>
+          <i id="new" class="fa-solid fa-refresh fa-2xl reset" onclick="resetGame()"></i>
         </div>
-        <div id="hero-description">
-          <p>
-            Stability is an AI-powered journaling app that helps you build
-            better habits. By providing you with personalized insights and
-            tools, we empower you to build positive habits, overcome obstacles,
-            and achieve your goals. Start your journey today and discover the
-            power of self-reflection and growth.
-          </p>
-          <a href="/today.html" class="btn cta btn-gradient desktop"
-            >Start your journey
-            <i class="fas fa-arrow-right shift"></i>
-          </a>
+        <h2 id="wotd"></h2>
+        <small id="definition"></small>
+        <div id="grid">
+          <ul class="grid_row">
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+          </ul>
+          <ul class="grid_row">
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+          </ul>
+          <ul class="grid_row">
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+          </ul>
+          <ul class="grid_row">
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+          </ul>
+          <ul class="grid_row">
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+            <li class="cell"></li>
+          </ul>
         </div>
-      </div>
-      <section class="features_section bg-gradient">
-        <h2 class="section_heading text_white">Features</h2>
-        <div class="features_ctn" id="features">
-          <div class="card feature">
-            <div class="feature-header">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <h2>Spot</h2>
-            </div>
-            <div class="accordion-wrapper">
-              <div>
-                <p>
-                  Our intuitive journaling prompts help you recognize recurring
-                  behaviors and habits that may be holding you back. By
-                  pinpointing these patterns, you gain valuable insights into
-                  your daily routines, empowering you to make positive changes
-                </p>
-                <a href="/about.html#spot">Read more...</a>
-              </div>
-            </div>
-            <div></div>
-          </div>
-          <div class="card feature">
-            <div class="feature-header">
-              <i class="fa-solid fa-hammer"></i>
-              <h2>Break</h2>
-            </div>
-            <div class="accordion-wrapper">
-              <div>
-                <p>
-                  Empower yourself to break free from unhealthy routines with
-                  our tailored habit-breaking tools. From setting achievable
-                  goals to tracking your progress, our app provides the support
-                  and guidance you need to replace old habits with new, positive
-                  ones
-                </p>
-                <a href="/about.html#break">Read more...</a>
-              </div>
-            </div>
-          </div>
-          <div class="card feature">
-            <div class="feature-header">
-              <i class="fa-solid fa-hand-fist"></i>
-              <h2>Lead</h2>
-            </div>
-            <div class="accordion-wrapper">
-              <div>
-                <p>
-                  Our journaling app isn't just about identifying and breaking
-                  bad habits; it's about guiding you towards a more fulfilling
-                  life. Through reflection, goal-setting, and positive
-                  reinforcement, we're here to help you build habits that align
-                  with your values and aspirations, ultimately leading you
-                  towards a happier, healthier, and more meaningful life.
-                </p>
-                <a href="/about.html#lead">Read more...</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="keyboard"></div>
       </section>
-      <section class="testimonials_section">
-        <h2 class="section_heading">Testimonials</h2>
-        <div class="testimonials_ctn">
-          <div class="testimonial">
-            <img
-              src="https://i.pravatar.cc/150?img=7"
-              alt="User avatar"
-              class="avatar"
-            />
-            <div>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <p class="testimonial_content">
-              "Stability has been a game-changer for me. It has helped me
-              overcome my fears and insecurities, allowing me to pursue my
-              dreams with confidence. I highly recommend it!"
-            </p>
-            <span class="author">- John, 35</span>
-          </div>
-          <div class="testimonial">
-            <img
-              src="https://i.pravatar.cc/150?img=1"
-              alt="User avatar"
-              class="avatar"
-            />
-            <div>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <p class="testimonial_content">
-              "Using Stability has been an incredible journey of self-discovery.
-              It has given me the tools and support I needed to break free from
-              negative patterns and create a positive mindset. I'm grateful for
-              this amazing app!"
-            </p>
-            <span class="author">- Emily, 42</span>
-          </div>
-          <div class="testimonial">
-            <img
-              src="https://i.pravatar.cc/150?img=2"
-              alt="User avatar"
-              class="avatar"
-            />
-            <div>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <p class="testimonial_content">
-              "Stability has revolutionized the way I approach life. It has
-              helped me build resilience and develop a growth mindset. I'm now
-              more motivated and focused than ever before. Thank you,
-              Stability!"
-            </p>
-            <span class="author">- Michael, 31</span>
-          </div>
-          <div class="testimonial desktop">
-            <img
-              src="https://i.pravatar.cc/150?img=5"
-              alt="User avatar"
-              class="avatar"
-            />
-            <div>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <p class="testimonial_content">
-              "Stability has revolutionized the way I approach life. It has
-              helped me build resilience and develop a growth mindset. I'm now
-              more motivated and focused than ever before. Thank you,
-              Stability!"
-            </p>
-            <span class="author">- Michael, 31</span>
-          </div>
-          <div class="testimonial desktop">
-            <img
-              src="https://i.pravatar.cc/150?img=4"
-              alt="User avatar"
-              class="avatar"
-            />
-            <div>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <p class="testimonial_content">
-              "Stability has revolutionized the way I approach life. It has
-              helped me build resilience and develop a growth mindset. I'm now
-              more motivated and focused than ever before. Thank you,
-              Stability!"
-            </p>
-            <span class="author">- Michael, 31</span>
-          </div>
-          <div class="testimonial desktop">
-            <img
-              src="https://i.pravatar.cc/150?img=6"
-              alt="User avatar"
-              class="avatar"
-            />
-            <div>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <p class="testimonial_content">
-              "Stability has revolutionized the way I approach life. It has
-              helped me build resilience and develop a growth mindset. I'm now
-              more motivated and focused than ever before. Thank you,
-              Stability!"
-            </p>
-            <span class="author">- Michael, 31</span>
-          </div>
-        </div>
-      </section>
-      <div class="banner bg-gradient">
-        <a href="/today.html" class="btn light"
-          >Start your journey
-          <i class="fas fa-arrow-right shift"></i>
-        </a>
-      </div>
     </main>
-    <footer class="footer_placeholder"></footer>
+    <footer class="footer_placeholder bg-blue white"></footer>
   </body>
 </html>

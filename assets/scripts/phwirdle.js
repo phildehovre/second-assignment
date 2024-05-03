@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
     var wotd = CookieUtils.getCookie('wotd')
     fetchDefinition(wotd)
     
+    if (!wotd) {
+        location.reload
+        setNewWord()
+    }
 
 //    BUG: When a  letter appears and the first instance is "existing"
 //    not correct, it will appear
@@ -32,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * */ 
     
     function registerInput(key) {
+        if (gameOver) return;
         // Keypress animation, for some reason, 
         // blocks the backspace doing its job,
         // hence the 'if' statement;
@@ -40,10 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
             pressed.classList.toggle('active')
             setTimeout(() => {
                 pressed.classList.toggle('active')
-            }, 150)
+            }, 
+            0)
         }
    
-        if (gameOver) return;
 
         if (key == "Back" || key == 'Backspace') {
             typed = typed.slice(0, typed.length-1)
@@ -55,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cells[typed.length - 1].textContent = key
             }
         } else if (key == "Enter" && typed.length == 5) {
-            var [correct, existing] = checkWord(wotd, typed, attempts)
+            var [correct, existing] = checkWord(wotd, typed, attempts, gameOver)
             
             // assigning classes to correct/existing letters.
             correct.forEach((index) => {
@@ -75,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const currentRow = rows[attempts.length]
                 cells = currentRow.querySelectorAll('.cell')
             }
-
+            
             // Assigning classes to virtual keyboard keys
             // based on correct/existing/incorrect status.
             for (let i = 0; i < attempts.length; i++) {
@@ -97,12 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 }
-                )
-
-            }
+            )
         }
-        
+        gameOver = attempts.length == 5 || correct.length == 5 ? true:false
+        console.log(gameOver)
     }
+        
+}
 
     // =========== Initialising/Registering virtual Keyboard ======
     let keyboard = document.querySelector('#keyboard');
@@ -155,7 +161,6 @@ function getNewWord() {
 }
 
 function checkWord(wotd, typed, attempts) {
-    let definitions = []
     /**
      * This function will return two arrays of
      * indices which can then be used to select
@@ -175,7 +180,7 @@ function checkWord(wotd, typed, attempts) {
      * letter appear, it will subtract 1 from that letter count.
      */
     const hash = wotd.split('').reduce((acc, letter) => {
-        acc[letter]? acc[letter] += 1 : acc[letter] = 1
+        acc[letter]? acc[letter] + 1 : acc[letter] = 1
         return acc
     }, {})
 
@@ -184,18 +189,22 @@ function checkWord(wotd, typed, attempts) {
      * but its index to the correct/existing arrays.
      */
     for (let i = 0; i < attempt.length ; i++) {
-        if (attempt[i] === comparator[i]) {
-            hash[attempt[i]] -= 1
-            correct.push(i)
-        }
-        else if (comparator.includes(attempt[i]) && hash[attempt[i]] != 0) {
-            hash[attempt[i]] -= 1
-            existing.push(i)
+        // Check if letter has already been found
+        if (hash[attempt[i]] != 0) {
+            // If not, is it at the right index
+            if (attempt[i] === comparator[i]) {
+                hash[attempt[i]] -= 1
+                correct.push(i)
+            }
+            // If not, is it at least included
+            else if (comparator.includes(attempt[i])) {
+                hash[attempt[i]] -= 1
+                existing.push(i)
+            }
         }
     }   
 
     if (correct.length == 5 || attempts.length == 4) {
-        gameOver = true
         document.querySelector('#wotd').textContent = `The word was: ${wotd}`
 
 
