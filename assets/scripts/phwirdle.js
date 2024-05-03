@@ -23,6 +23,8 @@
  * and mystery word.
  */
 
+var DEBUG = 'stool'
+
 var attempts = [];
 var typed = '';
 var gameOver = false
@@ -30,7 +32,9 @@ setNewWord()
 var wotd = CookieUtils.getCookie('wotd')
 fetchDefinition(wotd)
 
+
 document.addEventListener('DOMContentLoaded', () => {
+
     const rows = document.querySelectorAll('.grid_row');
     const currentRow = rows[attempts.length];
     let cells = currentRow.querySelectorAll('.cell'); 
@@ -57,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 pressed.classList.toggle('active')
             }, 
-            0)
+            100)
         }
         
         if (key == "Back" || key == 'Backspace') {
@@ -69,7 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 typed += key
                 cells[typed.length - 1].textContent = key
             }
-        } else if (key == "Enter" && typed.length == 5) {
+        } else if (key == "Enter") {
+            if (typed.length < 5) return;
+            
             // Initiate validation
             spellCheck(typed)
             .then((result) => {
@@ -93,11 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         cell.style = `--delay: ${index}`
                         cell.classList.add('checked')
                     });
-                              // updateKeyboard(attemps)
+
+                    // Move to next row
                     if (attempts.length < 5) {
                         const currentRow = rows[attempts.length]
                         cells = currentRow.querySelectorAll('.cell')
                     }
+
                 
                     // Assigning classes to virtual keyboard keys
                     // based on correct/existing/incorrect status.
@@ -125,21 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
         });           
 
-            // ===============Spellcheck ===================
-            async function spellCheck(word) {
-                return fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-                    .then(res => {
-                        if (res.status === 200) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error occurred:", error);
-                        return;
-                    });
-            }
+
         gameOver = attempts.length == 5 || typed == wotd ? true:false
     }
 }
@@ -178,21 +172,22 @@ document.addEventListener('DOMContentLoaded', () => {
 /**
  * Function sources a random word.
 */
-function setNewWord() {
-    fetch('https://random-word-api.vercel.app/api?words=1&length=5')
-    .then((res) => res.json())
-    .then(res => {
-        CookieUtils.setCookie(`wotd`, res[0]);
-        
-    });
-};
+function setNewWord(w) {
+    if (w) {
+        CookieUtils.setCookie('wotd', w)
+    } else {
+
+        const res = fetch('https://random-word-api.vercel.app/api?words=1&length=5')
+        .then((res) => res.json())
+        .then(res => {
+            CookieUtils.setCookie(`wotd`, res[0]);
+            
+        });
+    };
+}
 
 function resetGame() {
   location.reload();
-};
-
-function getNewWord() {
-    return CookieUtils.getCookie('wotd');
 };
 
 function checkWord(wotd, typed, attempts) {
@@ -201,7 +196,6 @@ function checkWord(wotd, typed, attempts) {
      * indices which can then be used to select
      * the cells that need updating.
      */
-
     let correct = [];
     let existing = [];
 
@@ -216,9 +210,10 @@ function checkWord(wotd, typed, attempts) {
      * letter appear, it will subtract 1 from that letter count.
      */
     const hash = wotd.split('').reduce((acc, letter) => {
-        acc[letter]? acc[letter] + 1 : acc[letter] = 1
+        acc[letter]? acc[letter] += 1 : acc[letter] = 1
         return acc;
     }, {});
+
 
     /**
      * Contains comparison logic and dispatches not the letter,
@@ -237,6 +232,7 @@ function checkWord(wotd, typed, attempts) {
                 hash[attempt[i]] -= 1;
                 existing.push(i);
             }
+
         }
     }   
 
@@ -271,7 +267,20 @@ function fetchDefinition(word) {
     });
 };
 
-
+async function spellCheck(word) {
+    return fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+        .then(res => {
+            if (res.status === 200) {
+                return true;
+            } else {
+                return false;
+            }
+        })
+        .catch(error => {
+            console.error("Error occurred:", error);
+            return;
+        });
+}
 
 function stringifyDefinitions(array) {
     let acc = [];
