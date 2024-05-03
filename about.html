@@ -1,88 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta title="Stability" content="This is a simple website for learning purpose">
-    <meta name="description" content="This is a simple website for learning purpose">
-    <meta name="keywords" content="HTML, CSS, JavaScript">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/about.css">
-    <link rel="stylesheet" href="../assets/css/hamburger.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      title="Phwirdle"
+      content="This is a simple website for learning purpose"
+    />
+    <meta
+      name="description"
+      content="This is a simple website for learning purpose"
+    />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/about.css" />
+    <link rel="stylesheet" href="../assets/css/hamburger.css" />
     <script src="/assets/scripts/navbar.js" defer></script>
     <script src="/assets/scripts/footer.js" defer></script>
     <script src="/assets/scripts/script.js" defer></script>
-    <script src="https://kit.fontawesome.com/e8ab5a3bbe.js" crossorigin="anonymous"></script>
-    <title>Stability | About</title>
-</head>
-<body>
-    <header class="nav_placeholder">
-   
-    </header>
+    <script
+      src="https://kit.fontawesome.com/e8ab5a3bbe.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Phwirdle | About</title>
+  </head>
+  <body>
+    <header class="nav_placeholder"></header>
     <main>
-        <section class="about_ctn">
-            <h1>About</h1>
-            <h2>Stability</h2>
-            <p class="about_card header">Welcome to our innovative journaling app designed 
-                to revolutionize the way you <strong>
-                    reflect, understand, and evolve. 
-                </strong>
-                Our application harnesses the power of artificial intelligence to offer 
-                you a unique journey towards self-discovery and personal growth.</p>
-            <div class="about_card">
-                <div>
-                    <i class="fa-solid fa-magnifying-glass fa-2xl"></i>
-                    <h3>Understanding Your Patterns</h3>
-                </div>
-                <p>
-                    At the heart of our journaling app lies a sophisticated 
-                    AI system that analyzes your entries to identify patterns of thought and behavior. 
-                    Through advanced algorithms, our app recognizes recurring themes, emotions, 
-                    and behaviors, providing you with invaluable insights into your psyche.
-                </p>
-            </div>
-            <div class="about_card" id="spot">
-                <div>
-                    <i class="fa-solid fa-hammer fa-2xl"></i>
-                    <h3>Empowering Change</h3>
-                </div>
-                <p>
-                    Knowledge is power, and our app empowers you with the knowledge 
-                    to make positive changes in your life. By recognizing patterns that may be holding 
-                    you back or patterns that you wish to reinforce, our app guides you towards 
-                    actionable steps for growth and transformation.
-                </p>
-            </div>
-                  <div class="about_card" id="break">
-                    <div>
-                        <i class="fa-solid fa-hand-fist fa-2xl"></i>
-                        <h3>Personalized Guidance</h3>
-                    </div>
-                    <p>
-                        No two individuals are alike, and neither are their journeys 
-                        towards self-improvement. Our journaling app offers personalized guidance tailored 
-                        to your unique needs and goals. Whether you're seeking to break harmful habits, 
-                        cultivate new perspectives, or simply understand yourself better, our app provides 
-                        the support and tools you need to succeed.
-                    </p>
-                    </div>
-                  <div class="about_card" id="lead">
-            <div>
-                <h3>A Journey of Self-Discovery</h3>
-            </div>
-            <p>
+      <section class="about_ctn">
+        <h2>How to Phlay:</h2>
+        <p class="about_card header">
+          Behind the scenes is a <strong>mystery word</strong> (randomly
+          generated through an API call). Type your guess and press
+          <em>"enter"</em>. The letters that are in the right place will show in
+          <span class="text-bg-dark" style="display: inline-block"
+            >dark blue</span
+          >, the ones that are not in the right place, in
+          <span class="text-bg-light" style="display: inline-block"
+            >light blue</span
+          >, the ones that do not exist in the mystery word in white.
+        </p>
+        <h1>About Phwirdle</h1>
+        <p class="about_card header">
+          Phwirlde is word guessing game and it is my implementation of a very
+          popular game owned by a historically popular American newspaper.
+          <br />
+          <br />
+          This implementation is written entirely in
+          <span class="text-bg-dark" style="display: inline-block"
+            >vanilla Javascript</span
+          >. I challenged myself to code this application in two afternoons
+          without the help of any tutorials. Sure, I could have used React and
+          some fancy libraries. But where is the fun in that? The purpose of
+          this exercise was to build a production-level browser game under very
+          specific time and tooling constraints.
+          <br />
+          <br />
+          <i class="fa-brands fa-github fa-2xl" color="var(--primary)"></i>
+        </p>
 
-                Embark on a journey of self-discovery with our journaling app 
-                as your trusted companion. Explore the depths of your thoughts, emotions, and 
-                experiences in a safe and supportive environment. With each entry, you gain a 
-                deeper understanding of yourself and the world around you, paving the way for 
-                profound personal growth and transformation.
-            </p>
-            </div>
-            <p class="about_card header">Join us on this transformative journey and unlock the full 
-                potential of your mind, one journal entry at a time.</p>
-        </section>
+        <h1>About Phme</h1>
+        <p class="about_card header">
+          <span
+            style="
+              background-color: var(--primary);
+              color: white;
+              display: flex;
+              justify-content: center;
+              padding: 0.5em;
+              border-radius: 6px;
+              font-size: 1.5rem;
+            "
+            >Hi there!<br />
+            My name is Phil, here is a little bit about phme:</span
+          >
+          <br />
+          As a musician turned developer, I've embraced the world of
+          programming, creating applications, and websites. My coding journey
+          began during the lockdowns in 2020, and I've since tackled diverse
+          projects, demonstrating a can-do attitude and a passion for clean
+          code. My multilingual skills, including native proficiency in French
+          and English, are assets that enable effective communication in diverse
+          teams. I'm excited about opportunities to contribute my skills and
+          enthusiasm to innovative organizations, I look forward to discussing
+          how I can make a meaningful impact on your team.
+        </p>
+      </section>
     </main>
     <footer class="footer_placeholder bg-blue white"></footer>
-</body>
+  </body>
 </html>
