@@ -48,7 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 
             0)
         }
-   
+        
+
 
         if (key == "Back" || key == 'Backspace') {
             typed = typed.slice(0, typed.length-1)
@@ -60,22 +61,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 cells[typed.length - 1].textContent = key
             }
         } else if (key == "Enter" && typed.length == 5) {
-            var [correct, existing] = checkWord(wotd, typed, attempts, gameOver)
-            
-            // assigning classes to correct/existing letters.
-            correct.forEach((index) => {
-                cells[index].classList.add('correct')
-            })
-            existing.forEach((index) => {
-                cells[index].classList.add('existing')
-            })
-            attempts.push(typed)
-            typed = ''
-            cells.forEach((cell, index) => {
-                cell.style = `--delay: ${index}`
-                cell.classList.add('checked')
-            })
-            // updateKeyboard(attemps)
+            // Initiate validation
+            spellCheck(typed)
+            .then((result) => {
+                if (result == false) {
+                    rows[attempts.length].classList.add('shake')
+                    setTimeout(() => {
+                        rows[attempts.length].classList.remove('shake')
+                    }, 300)
+                } 
+                if (result == true) {
+                    const [correct, existing] = checkWord(wotd, typed, attempts, gameOver)
+                    correct.forEach((index) => {
+                        cells[index].classList.add('correct')
+                    })
+                    existing.forEach((index) => {
+                        cells[index].classList.add('existing')
+                    })
+                    attempts.push(typed)
+                    typed = ''
+                    cells.forEach((cell, index) => {
+                        cell.style = `--delay: ${index}`
+                        cell.classList.add('checked')
+                    });
+                              // updateKeyboard(attemps)
             if (attempts.length < 5) {
                 const currentRow = rows[attempts.length]
                 cells = currentRow.querySelectorAll('.cell')
@@ -104,8 +113,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             )
         }
-        gameOver = attempts.length == 5 || correct.length == 5 ? true:false
-        console.log(gameOver)
+                }
+            })
+            
+
+            // ===============Spellcheck ===================
+            async function spellCheck(word) {
+                return fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+                    .then(res => {
+
+                        if (res.status === 200) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error occurred:", error);
+                        return;
+                    });
+            }
+            // ===============Spellcheck ===================
+     
+
+
+  
+        gameOver = attempts.length == 5 || typed == wotd ? true:false
     }
         
 }
@@ -166,6 +199,7 @@ function checkWord(wotd, typed, attempts) {
      * indices which can then be used to select
      * the cells that need updating.
      */
+
     let correct = []
     let existing = []
 
@@ -234,6 +268,8 @@ function fetchDefinition(word) {
         CookieUtils.setCookie('definition', definition)
     })
 }
+
+
 
 function stringifyDefinitions(array) {
     let acc = []

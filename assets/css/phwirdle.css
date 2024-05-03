@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: .5rem;
     align-items: center;
+    margin-bottom: 2em;
 }
 
  .grid_row {
@@ -25,6 +26,10 @@
     justify-content: center;
     align-items: center;
     transition: 250ms ease-in-out all;
+}
+
+.grid_row.shake {
+    animation: shake 250ms ease-in-out;
 }
             
 .grid_row > .cell.existing {
@@ -128,5 +133,20 @@
     }
     100% {
         transform: scaleY(1)
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(15px)
+    }
+    33% {
+        transform: translateX(-15px)
+    }
+    66% {
+        transform: translateX(15px)
+    }
+    100% {
+        transform: translateX(0px)
     }
 }

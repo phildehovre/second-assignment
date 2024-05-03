@@ -1,7 +1,6 @@
 .about_ctn {
     margin: auto;
     display: flex;
-    gap: 1rem;
     flex-direction: column;
     max-width: 750px;
     color: var(--primary)
