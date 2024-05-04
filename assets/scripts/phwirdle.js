@@ -78,8 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (key == "Enter") {
             if (typed.length < 5) return;
             inputPrevent = true
-            
-            // Initiate validation
+        // Initiate validation
            await spellCheck(typed)
             .then((result) => {
                 if (result == false) {
@@ -244,16 +243,15 @@ function checkWord(wotd, typed, attempts) {
     if (correct.length == 5 || attempts.length == 4) {
         document.querySelector('#wotd').textContent = `The word was: ${wotd}`;
 
-
+        const phonetic = CookieUtils.getCookie('phonetic')
         CookieUtils.getCookie('definition').split(';').forEach((definition, i) => {
-            console.log("definition", definition);
-            let defCtn = document.createElement('small');
+            let defCtn = document.createElement('p');
             let def = document.createElement('p');
 
             def.classList.add('definition');
             defCtn.classList.add('def_ctn');
 
-            def.textContent = definition;
+            def.textContent = phonetic.concat(", ", definition);
 
             defCtn.appendChild(def);
             document.querySelector('#definition').appendChild(defCtn);
@@ -268,7 +266,9 @@ function fetchDefinition(word) {
     .then((res) => res.json())
     .then(data => {
         const definition = stringifyDefinitions(data[0].meanings[0].definitions);
+        const phonetic = data[0].phonetic
         CookieUtils.setCookie('definition', definition);
+        CookieUtils.setCookie('phonetic', phonetic);
     });
 };
 
