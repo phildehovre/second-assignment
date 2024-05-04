@@ -34,6 +34,7 @@ fetchDefinition(wotd)
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    var inputPrevent = false
 
     const rows = document.querySelectorAll('.grid_row');
     const currentRow = rows[attempts.length];
@@ -52,8 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
      * just the string value of the key, rather than an event.
      * */ 
     
-    function registerInput(key) {
+    async function registerInput(key) {
         if (gameOver) return;
+        if (inputPrevent) return;
 
         if (key !== 'Backspace') {
             let pressed = document.querySelector(`#${key}`)
@@ -75,9 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else if (key == "Enter") {
             if (typed.length < 5) return;
+            inputPrevent = true
             
             // Initiate validation
-            spellCheck(typed)
+           await spellCheck(typed)
             .then((result) => {
                 if (result == false) {
                     rows[attempts.length].classList.add('shake')
@@ -148,7 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         key.addEventListener('click', () => {
             pressedKey = key.textContent;
-            registerInput(pressedKey);
+            registerInput(pressedKey)
+            .then(() => {inputPrevent = false})
 
         });
         keyboard.appendChild(key);
@@ -158,7 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
     // Allow for backspace functionality       
         let key = e.key;
-        registerInput(key);
+        registerInput(key)
+        .then(() => {inputPrevent = false});
     });
 
     // =========== Reset Function =============
