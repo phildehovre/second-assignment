@@ -1,9 +1,18 @@
+:root {
+    --existing-bg: rgb(255, 216, 132);
+    --existing-txt: var(--primary);
+    --correct-bg: rgb(96, 168, 67);
+    --correct-txt: white;
+}
+
 #grid {
     display: flex;
     flex-direction: column;
     gap: .5rem;
     align-items: center;
     margin-bottom: 2em;
+
+
 }
 
  .grid_row {
@@ -33,13 +42,13 @@
 }
             
 .grid_row > .cell.existing {
-    background-color: var(--primary-light);
-    color: var(--primary);
+    background-color: var(--existing-bg);
+    color: var(--existing-txt);
 }
-            
+
 .grid_row  > .cell.correct {
-    background-color: var(--primary);
-    color: var(--white);
+    background-color: var(--correct-bg);
+    color: var(--correct-txt);
 
 }
 
@@ -113,12 +122,12 @@
         }
         
  .key.correct {
-     background-color: var(--primary);
-     color: white;
+     background-color: var(--correct-bg);
+     color: var(--correct-txt);
     }
     .key.existing {
-        background-color: var(--primary-light);
-        color: var(--primary);
+        background-color: var(--existing-bg);
+        color: var(--existing-txt);
 }
     .key.incorrect {
     color: var(--primary-light);

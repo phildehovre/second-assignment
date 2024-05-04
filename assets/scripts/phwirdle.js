@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!wotd) {
         location.reload
         setNewWord()
+        wotd = CookieUtils.getCookie('wotd')
     }
     
     // ============ Input registration + Visual feedback ==============
