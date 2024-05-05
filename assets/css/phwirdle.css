@@ -80,7 +80,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: .25rem;
-    width: 575px;
+    max-width: 575px;
+    width: 100%;
     justify-content: center;
     margin: 0 auto;
 }
