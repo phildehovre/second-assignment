@@ -39,6 +39,7 @@ const navButtons = [
     {name: "About", link: "about.html"},
     {name: "Contact", link: "https://www.philippedehovre.com/#contact"},
     {name: "Play", link: "/"},
+    // {name: "Playground", link: "/playground.html"},
 
 ]
 

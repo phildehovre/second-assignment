@@ -23,28 +23,32 @@
  * and mystery word.
  */
 
-var DEBUG = 'stool'
+var DEBUG = 'stool';
 
 var attempts = [];
 var typed = '';
-var gameOver = false
-setNewWord()
-var wotd = CookieUtils.getCookie('wotd')
-fetchDefinition(wotd)
+var gameOver = false;
+setNewWord();
+var wotd = CookieUtils.getCookie('wotd');
+fetchDefinition(wotd);
+
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    var inputPrevent = false
+    var inputPrevent = false;
+
+    initializeScore()
 
     const rows = document.querySelectorAll('.grid_row');
     const currentRow = rows[attempts.length];
     let cells = currentRow.querySelectorAll('.cell'); 
     
     if (!wotd) {
-        location.reload
-        setNewWord()
-        wotd = CookieUtils.getCookie('wotd')
-    }
+        location.reload;
+        setNewWord();
+        wotd = CookieUtils.getCookie('wotd');
+    };
     
     // ============ Input registration + Visual feedback ==============
     /** 
@@ -79,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (key == "Enter") {
             if (typed.length < 5) return;
             inputPrevent = true
+            
         // Initiate validation
            await spellCheck(typed)
             .then((result) => {
@@ -112,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                     // Assigning classes to virtual keyboard keys
                     // based on correct/existing/incorrect status.
-                    for (let i = 0; i < attempts.length; i++) {
+                    for (i = 0; i < attempts.length; i++) {
                         attempts[i].split('').forEach( (l, i) => {
                             // At Initialization, each key in the virtual keyboard
                             // is assigned its own value as an ID, which allows for
@@ -135,8 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 }
         });           
-
-
         gameOver = attempts.length == 5 || typed == wotd ? true:false
     }
 }
@@ -166,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(() => {inputPrevent = false});
     });
 
-    // =========== Reset Function =============
+    // =========== Initialize "rest" button =============
     const resetButton = document.querySelector('#new')
     resetButton.addEventListener('click', () => resetGame())
 });
@@ -224,7 +227,7 @@ function checkWord(wotd, typed, attempts) {
      * Contains comparison logic and dispatches not the letter,
      * but its index to the correct/existing arrays.
      */
-    for (let i = 0; i < attempt.length ; i++) {
+    for (i = 0; i < attempt.length ; i++) {
         // Check if letter has already been found
         if (hash[attempt[i]] != 0) {
             // If not, is it at the right index
@@ -259,6 +262,18 @@ function checkWord(wotd, typed, attempts) {
         })
     }
 
+    // ======== Update score =========
+    if (correct.length === 5) {
+        let score = LocalStorageUtils.getScore()
+        score.won += 1
+        LocalStorageUtils.updateScore(score)
+    } else if (correct.length !== 5 && attempts.length === 4) {
+        let score = LocalStorageUtils.getScore()
+        score.lost += 1
+        LocalStorageUtils.updateScore(score)
+    }
+    initializeScore()
+
     return [correct, existing];
 }
 
@@ -290,11 +305,18 @@ async function spellCheck(word) {
 
 function stringifyDefinitions(array) {
     let acc = [];
-    for (let i = 0; i < 3; i++) {
+    for (i = 0; i < 3; i++) {
        array[i]? acc.push(array[i].definition) : null;
     }
     return acc.join(';');
 }
+
+function initializeScore() {
+    let score = LocalStorageUtils.getScore();
+    let scoreEl = document.querySelector("#score")
+    scoreEl.textContent = `Won: ${score.won} - Lost: ${score.lost}`
+}
+
 
 const letters = [
     'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 

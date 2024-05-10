@@ -29,3 +29,23 @@ function deleteCookie(cookieName) {
 }
 
 window.CookieUtils = { getCookie, setCookie, deleteCookie}
+
+function getScore() {
+    let score = localStorage.getItem('score');
+    
+    if (!score) {
+        score = {"won": 0, "lost": 0};
+        localStorage.setItem('score', JSON.stringify(score));
+    } else {
+        score = JSON.parse(score);
+    }
+
+    return score;
+}
+
+function updateScore(score) {
+    localStorage.setItem('score', JSON.stringify(score))
+
+}
+
+window.LocalStorageUtils = {getScore, updateScore}

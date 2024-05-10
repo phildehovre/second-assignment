@@ -81,3 +81,47 @@ function setScore(correct, incorrect) {
 
 
 
+
+
+//   Definition for singly-linked list.
+  function ListNode(val, next) {
+      this.val = (val===undefined ? 0 : val)
+      this.next = (next===undefined ? null : next)
+  }
+
+  function arrayToLinkedList(arr) {
+    if (arr.length === 0) {
+        return null;
+    }
+    
+    let head = new ListNode(arr[0]);
+    let current = head;
+    
+    for (let i = 1; i < arr.length; i++) {
+        current.next = new ListNode(arr[i]);
+        current = current.next;
+    }
+    
+    return head;
+}
+
+function truncateList(head) {
+    let current = head.next
+    let newHead = head
+
+    while (current) {
+        if (newHead.val < current.val) {
+            newHead = current
+            current = current.next
+        } else if (current.val < current.next.val)  {
+            current = current.next
+        } 
+    }
+    
+    return newHead
+}
+
+let list = arrayToLinkedList([5, 2, 13, 3, 8, 4, 4, 20, 19, 18, 17])
+console.log(truncateList(list))
+console.log(truncateList(arrayToLinkedList([5,2,13,3,8])))
+ 
