@@ -29,8 +29,8 @@ var attempts = [];
 var typed = '';
 var gameOver = false;
 setNewWord();
-var wotd = DEBUG;
-// var wotd = CookieUtils.getCookie('wotd');
+// var wotd = DEBUG;
+var wotd = CookieUtils.getCookie('wotd');
 fetchDefinition(wotd);
 
 
@@ -185,13 +185,18 @@ function setNewWord(w) {
     if (w) {
         CookieUtils.setCookie('wotd', w)
     } else {
-
-        const res = fetch('https://random-word-api.vercel.app/api?words=1&length=5')
-        .then((res) => res.json())
-        .then(res => {
-            CookieUtils.setCookie(`wotd`, res[0]);
+        try {
             
-        });
+            const res = fetch('https://random-word-api.vercel.app/api?words=1&length=5')
+            .then((res) => res.json())
+            .then(res => {
+                CookieUtils.setCookie(`wotd`, res[0]);
+                
+            });
+        } catch {
+            // CookieUtils.setCookie('wotd', w)
+            console.log(Math.round(Math.random()) * 126)
+        }
     };
 }
 
@@ -325,3 +330,21 @@ const letters = [
 'Enter', 'x', 'c', 'v', 'b', 'n', 'm', 'Back'
 ]
 
+const fiveLetterWords = [
+    "Apple", "House", "Chair", "Water", "Smile", "Brain", "Bread", "Earth", "Beach", "Cloud",
+    "Dance", "Maple", "Eagle", "Mouse", "Horse", "Tiger", "Lemon", "Flute", "Music", "Paper",
+    "Light", "Candle", "Dream", "Drink", "Queen", "Green", "Grape", "Hotel", "Jelly", "Knife",
+    "Laser", "Magic", "Ocean", "Peace", "Quiet", "Rabbit", "Sheep", "Smoke", "Solid", "Train",
+    "Video", "Alarm", "Angel", "Beard", "Black", "Blade", "Blank", "Blush", "Brick", "Brush",
+    "Bunch", "Cabin", "Cakes", "Candy", "Chair", "Chalk", "Charm", "Chess", "Chips", "Chord",
+    "Clean", "Clear", "Click", "Climb", "Clock", "Clown", "Coast", "Color", "Comet", "Comic",
+    "Crown", "Curve", "Cycle", "Delta", "Dewey", "Diary", "Dress", "Dwell", "Earth", "Elbow",
+    "Error", "Fairy", "Fancy", "Flask", "Flash", "Fleet", "Flood", "Floor", "Flora", "Fluff",
+    "Focal", "Forge", "Fossil", "Frame", "Frost", "Fudge", "Furry", "Galaxy", "Gamey", "Ghost",
+    "Glare", "Globe", "Gluey", "Golly", "Goody", "Gorge", "Grain", "Graph", "Grape", "Grass",
+    "Grave", "Green", "Grief", "Grill", "Grime", "Gripe", "Group", "Grove", "Grunt", "Guard",
+    "Guest", "Guide", "Gulch", "Gulfy", "Gully", "Gumbo"
+  ];
+
+  
+  console.log(fiveLetterWords.length)
