@@ -29,7 +29,8 @@ var attempts = [];
 var typed = '';
 var gameOver = false;
 setNewWord();
-var wotd = CookieUtils.getCookie('wotd');
+var wotd = DEBUG;
+// var wotd = CookieUtils.getCookie('wotd');
 fetchDefinition(wotd);
 
 
