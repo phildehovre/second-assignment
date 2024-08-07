@@ -1,4 +1,5 @@
 # Word Guessing Game: PHWIRDLE
+## [The game](https://second-assignment-omega.vercel.app/)
 
 ## Overview
 
